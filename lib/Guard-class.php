@@ -60,7 +60,13 @@ class Guard extends JWT
 
     public function decoding($Session)
     {
-        return JWT::decode($Session, _JWTKEY_, array('HS256'));
+        try{
+            return JWT::decode($Session, _JWTKEY_, array('HS256'));
+        }catch(Exception $err)
+        {
+            unset($_SESSION['global']);
+            Router::Redirect('/Login');
+        }
     }
 
 }
