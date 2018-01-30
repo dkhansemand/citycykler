@@ -7,7 +7,7 @@
     Router::SetDefaultRoute('/Home');
     Router::SetViewFolder(__DIR__.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
 
-    Router::AddEndpoint('/Home','home.php');
+    Router::AddEndpoint('/Home','home.php', ['title' => 'Forsiden']);
 
 
     Router::Init($_SERVER['REQUEST_URI']);
@@ -30,9 +30,10 @@
                 <h2>cykler i alle prisklasser</h2>
             </div>
             <div>
-                <form action="#search" method="post">
+                <form action="#search" method="post" id="headerSearch">
                     <input type="text" name="searchVal" id="searchVal"><br>
                     <button>Søg</button>
+                    <a href="#">Advanceret søg</a>
                 </form>
             </div>
         </header>
@@ -40,7 +41,7 @@
     <section id="mainContainer">
         <header>
             <nav>
-                <a href="#">Forsiden</a>
+                <a href="#" class="active">Forsiden</a>
                 <a href="#">Cykler</a>
                 <a href="#">Udstyr</a>
                 <a href="#">Kontakt</a>
@@ -48,7 +49,13 @@
             </nav>
         </header>
         <section id="mainContent">
-            <?php require_once Router::GetView(); ?> 
+            <article id="content">
+                <h3><?=Router::ViewTitle()?></h3>
+                <?php require_once Router::GetView(); ?> 
+            </article>
+            <section id="offersPanel">
+
+            </section>
         </section>
         <footer>
         </footer>
