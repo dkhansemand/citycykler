@@ -49,8 +49,7 @@ class Guard extends JWT
                 Router::Redirect('/Login');
                 return false;
             }
-            $roleLevel = $this->decoding($_SESSION['global'])->data->roleLevel;
-            return ($roleLevel >= $this->requiresLvl) ? true : Router::RedirectToDefault();
+            
         }catch(Exception $err)
         {
             session_destroy();

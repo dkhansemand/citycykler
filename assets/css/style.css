@@ -143,6 +143,8 @@ h5{
     grid-template-columns: auto 3px 240px;
     grid-area: main; 
     padding: 5px;
+    
+    overflow-wrap: break-word;
 }
 
 #mainContent #split{
@@ -185,3 +187,18 @@ footer{
     border-bottom-right-radius: 15px;
     box-shadow: #000 0px 1px 5px;
 }
+
+#home article {
+
+    font-size: 1.3em;
+}
+#home article img{
+    max-height: 200px;
+    max-width: 250px;
+    float: right; 
+    margin: 0px 15px 15px 10px;
+}
+#home article p{
+    width: 100%;
+}
+

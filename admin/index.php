@@ -8,7 +8,7 @@
     Router::AddEndpoint('/Login', 'login.php', ['title' => 'Login']);
     Router::AddEndpoint('/Logout', 'logout.php');
     Router::AddEndpoint('/Dashboard','dashboard.php', ['guard' => new Guard(), 'title' => 'Dashboard']);
-
+    Router::AddEndpoint('/EditPages','editpages.php', ['guard' => new Guard(), 'title' => 'Ret sidetekster']);
     Router::Init($_SERVER['REQUEST_URI']);
    
 ?>
@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Project adminitration site">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>PROJECT_NAME | Admin</title>
+    <title>City Cykler | Admin</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -78,6 +78,7 @@
         
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
           <a class="mdl-navigation__link" href="<?=Router::Link('/Dashboard')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>Dashboard</a>
+          <a class="mdl-navigation__link" href="<?=Router::Link('/EditPages')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">edit</i>Ret sidetekster</a>
           <div class="mdl-layout-spacer"></div>
           
         </nav>
@@ -92,7 +93,7 @@
             <div class="mdl-mini-footer__right-section">
                 <div class="mdl-logo">Admin</div>
                 <ul class="mdl-mini-footer__link-list">
-                    <li>PROJECT_NAME &copy; <?=date('Y')?></li>
+                    <li>City Cykler &copy; <?=date('Y')?></li>
                 </ul>
             </div>
         </footer>
