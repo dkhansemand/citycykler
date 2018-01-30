@@ -44,11 +44,22 @@ h5{
     background-color: #c9cacc;
     border-bottom: 2px solid #fff;
     height: 200px;
-    padding: 20px 20%;
+    padding: 20px 288px;
     padding-bottom: 0;
-    position: relative;
+    z-index: 1;
 }
-#headerLayout header{
+#container
+{
+    position: absolute;
+    width: 960px;
+    left:0;
+    right:0;
+    top: 25px;
+    margin-left:auto;
+    margin-right:auto;
+    z-index: 50;
+}
+#container #topHeader{
     background: url('../media/headerright.png'), linear-gradient(#19f706 55%, #10bc1c);
     background-position: right;
     background-repeat: no-repeat;
@@ -56,32 +67,27 @@ h5{
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     box-shadow: #000 0px 1px 5px;
-    height: 90%;
-    position: absolute;
-    bottom: -2px;
-    left: 20%;
-    z-index: 100;
-    width: 60%;
+    height: 175px;
     display: flex;
     justify-content: space-between;
     padding: 70px 30px;
 }
-#headerLayout header h1{
+#container header h1{
     color: #fff;
     font-size: 24px;
     font-weight: 700;
 }
-#headerLayout header h2{
+#container header h2{
     color: #fff;
     font-weight: 400;
     font-size: 12px;
 }
 
-#headerLayout #headerSearch button{
+#container #headerSearch button{
     margin-top: 5px;
     padding: 2px;
 }
-#headerLayout #headerSearch a{
+#container #headerSearch a{
     color: #fff;
     font-size: 12px;
     text-decoration: none;
@@ -95,7 +101,8 @@ h5{
         "main"
         "footer";
     grid-template-rows: 40px minmax(20vh, 60vh) 30px;
-    margin: 0 20%;
+    margin: 0 auto;
+    width: 960px;
 }
 
 #mainContainer header nav{
@@ -113,7 +120,7 @@ h5{
     color: #000;
     height: 40px;
     display: block;
-    padding: 15px 45px;
+    padding: 15px 50px;
     text-decoration: none;
     align-self: center;
 }
@@ -133,7 +140,7 @@ h5{
     display: grid;
     grid-template-areas: 
         "content split offersPanel";
-    grid-template-columns: auto 3px 250px;
+    grid-template-columns: auto 3px 240px;
     grid-area: main; 
     padding: 5px;
 }

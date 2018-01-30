@@ -24,20 +24,23 @@
 </head>
 <body>
     <section id="headerLayout">
-        <header>
-            <div>
-                <h1>City Cykler</h1>
-                <h2>cykler i alle prisklasser</h2>
-            </div>
-            <div>
-                <form action="#search" method="post" id="headerSearch">
-                    <input type="text" name="searchVal" id="searchVal"><br>
-                    <button>Søg</button>
-                    <a href="#">Advanceret søg</a>
-                </form>
-            </div>
-        </header>
-    </section>
+        </section>
+        <div id="container">
+                <header id="topHeader">
+                    <div>
+                        <h1>City Cykler</h1>
+                        <h2>cykler i alle prisklasser</h2>
+                    </div>
+                    <div>
+                        <form action="#search" method="post" id="headerSearch">
+                            <input type="text" name="searchVal" id="searchVal"><br>
+                            <button>Søg</button>
+                            <a href="#">Advanceret søg</a>
+                        </form>
+                    </div>
+                </header>
+
+    
     <section id="mainContainer">
         <header>
             <nav>
@@ -61,5 +64,6 @@
         <footer>
         </footer>
     </section>
+</div>
 </body>
 </html>
