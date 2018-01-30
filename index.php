@@ -25,13 +25,33 @@
 <body>
     <section id="headerLayout">
         <header>
-        
+            <div>
+                <h1>City Cykler</h1>
+                <h2>cykler i alle prisklasser</h2>
+            </div>
+            <div>
+                <form action="#search" method="post">
+                    <input type="text" name="searchVal" id="searchVal"><br>
+                    <button>Søg</button>
+                </form>
+            </div>
         </header>
     </section>
-    <main>
-        <?php require_once Router::GetView(); ?> 
-    </main>
-    <footer>
-    </footer>
+    <section id="mainContainer">
+        <header>
+            <nav>
+                <a href="#">Forsiden</a>
+                <a href="#">Cykler</a>
+                <a href="#">Udstyr</a>
+                <a href="#">Kontakt</a>
+                <a href="#">Nyheder</a>
+            </nav>
+        </header>
+        <section id="mainContent">
+            <?php require_once Router::GetView(); ?> 
+        </section>
+        <footer>
+        </footer>
+    </section>
 </body>
 </html>
