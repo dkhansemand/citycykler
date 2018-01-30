@@ -32,16 +32,25 @@ body{
 #headerLayout
 {
     background-color: #c9cacc;
-    border-bottom: 4px solid #fff;
+    border-bottom: 2px solid #fff;
     height: 200px;
     padding: 20px 10%;
     padding-bottom: 0;
     position: relative;
 }
 #headerLayout header{
-    background: linear-gradient(#19f706 50%, #10bc1c);
-    height: 100%;
-    margin-bottom: -40px;
+    background: url('../media/headerright.png'), linear-gradient(#19f706 55%, #10bc1c);
+    
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: #000 0px 1px 5px;
+    height: 90%;
+    position: absolute;
+    bottom: -2px;
+    left: 5%;
     z-index: 100;
-    width: 100%;
+    width: 90%;
 }
