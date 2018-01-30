@@ -53,8 +53,9 @@
                 <h3><?=Router::ViewTitle()?></h3>
                 <?php require_once Router::GetView(); ?> 
             </article>
+            <span id="split"></span>
             <section id="offersPanel">
-
+                <h3>Tilbud</h3>
             </section>
         </section>
         <footer>

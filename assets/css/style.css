@@ -59,9 +59,9 @@ h5{
     height: 90%;
     position: absolute;
     bottom: -2px;
-    left: 10%;
+    left: 20%;
     z-index: 100;
-    width: 80%;
+    width: 60%;
     display: flex;
     justify-content: space-between;
     padding: 70px 30px;
@@ -95,7 +95,7 @@ h5{
         "main"
         "footer";
     grid-template-rows: 40px minmax(20vh, 60vh) 30px;
-    margin: 0 10%;
+    margin: 0 20%;
 }
 
 #mainContainer header nav{
@@ -113,7 +113,7 @@ h5{
     color: #000;
     height: 40px;
     display: block;
-    padding: 15px 50px;
+    padding: 15px 45px;
     text-decoration: none;
     align-self: center;
 }
@@ -132,19 +132,43 @@ h5{
     box-shadow: #000 0px 1px 5px;
     display: grid;
     grid-template-areas: 
-        "content offersPanel";
-    grid-template-columns: auto 100px;
+        "content split offersPanel";
+    grid-template-columns: auto 3px 250px;
     grid-area: main; 
-    padding: 2px;   
+    padding: 5px;
+}
+
+#mainContent #split{
+    grid-area: split;
+    background-color: #EDEDED;
+    height: 85%;
+    margin-top: 30px;
 }
 
 #mainContent #content{
     grid-area: content;
-    padding: 5px 10px;
+    margin-right: 10px;
+    padding: 5px ;
+}
+
+#mainContent #content h3{
+    border-bottom: 2px solid #EDEDED;
+    margin-bottom: 5px;
+   
+    padding-bottom: 4px;
 }
 
 #mainContent #offersPanel{
     grid-area: offersPanel;
+    margin-left: 5px;
+    padding: 5px;
+}
+
+#mainContent #offersPanel h3{
+    border-bottom: 2px solid #EDEDED;
+    margin-bottom: 5px;
+   
+    padding-bottom: 4px;
 }
 
 footer{
