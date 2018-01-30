@@ -1,0 +1,21 @@
+{
+    "name": "3941133/CityCykler",
+    "description": "CityCykler",
+    "type": "project",
+    "require": {
+        "firebase/php-jwt": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "\\": "./"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andreas Hansson",
+            "email": "3941133@rts-365.dk"
+        }
+    ],
+    "minimum-stability": "dev"
+}

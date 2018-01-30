@@ -1,0 +1,47 @@
+body,
+div,
+section,
+header,
+main,
+span,
+footer,
+nav,
+a,
+h1,
+h2,
+h3,
+h4,
+p,
+button,
+form,
+footer,
+figure,
+label
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #e1e1e1;
+    max-height: 100wh;
+
+}
+
+#headerLayout
+{
+    background-color: #c9cacc;
+    border-bottom: 4px solid #fff;
+    height: 200px;
+    padding: 20px 10%;
+    padding-bottom: 0;
+    position: relative;
+}
+#headerLayout header{
+    background: linear-gradient(#19f706 50%, #10bc1c);
+    height: 100%;
+    margin-bottom: -40px;
+    z-index: 100;
+    width: 100%;
+}
