@@ -6,7 +6,7 @@ class Category extends Database
     {
         try
         {
-            return (new self)->query("SELECT categoryTypeId, categoryTypeName FROM categorytype")->fetchAll();
+            return (new self)->query("SELECT categoryTypeId, categoryTypeName FROM categorytypes")->fetchAll();
         }catch(Exception $err)
         {
             throw new Exception("Fejl! [Category-class]: " . $err->getMessage());
@@ -17,8 +17,9 @@ class Category extends Database
     {
         try
         {
-            return (new self)->query("SELECT categoryId, categoryName, `filename` FROM categorytype
-                                        LEFT JOIN media ON categoryImage = mediaId")->fetchAll();
+            return (new self)->query("SELECT categoryId, categoryName, categoryType, categoryTypeName,`filename` FROM category
+                                        INNER JOIN categorytypes ON categoryType = categoryTypeId
+                                        INNER JOIN media ON categoryImage = mediaId")->fetchAll();
         }catch(Exception $err)
         {
             throw new Exception("Fejl! [Category-class]: " . $err->getMessage());
