@@ -26,6 +26,20 @@ class Category extends Database
         }
     }
 
+    public static function GetCategoriesByType($categoryType)
+    {
+        try
+        {
+            return (new self)->query("SELECT categoryId, categoryName, categoryType, categoryTypeName,`filename` FROM categorytypes
+                                        INNER JOIN category ON categoryType = categoryTypeId
+                                        INNER JOIN media ON categoryImage = mediaId
+                                        WHERE categoryTypeName = LOWER(:CNAME)", [':CNAME' => $categoryType])->fetchAll();
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Category-class]: " . $err->getMessage());
+        }
+    }
+
     public static function GetCategory($categoryId)
     {
         try

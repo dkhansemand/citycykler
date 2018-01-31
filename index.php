@@ -4,10 +4,11 @@
     //require_once __DIR__ . DIRECTORY_SEPARATOR . 'Guard-class.php';
   
 
-    Router::SetDefaultRoute('/Home');
+    Router::SetDefaultRoute('/Forsiden');
     Router::SetViewFolder(__DIR__.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
 
-    Router::AddEndpoint('/Home','home.php', ['title' => 'Forsiden']);
+    Router::AddEndpoint('/Forsiden','home.php', ['title' => 'Forsiden']);
+    Router::AddEndpoint('/Kategori/:CATEGORY','categories.php', ['title' => 'Kategorier']);
 
 
     Router::Init($_SERVER['REQUEST_URI']);
@@ -19,8 +20,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>City Cykler</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>City Cykler | <?=Router::ViewTitle()?></title>
+    <link rel="stylesheet" href="<?=Router::$BASE?>assets/css/style.css">
 </head>
 <body>
     <div id="headerLayout">
@@ -44,16 +45,15 @@
     <section id="mainContainer">
         <header>
             <nav>
-                <a href="#" class="active">Forsiden</a>
-                <a href="#">Cykler</a>
-                <a href="#">Udstyr</a>
+                <a href="<?=Router::Link('/Forsiden')?>" class="active">Forsiden</a>
+                <a href="<?=Router::Link('/Kategori/Cykler')?>">Cykler</a>
+                <a href="<?=Router::Link('/Kategori/Udstyr')?>">Udstyr</a>
                 <a href="#">Kontakt</a>
                 <a href="#">Nyheder</a>
             </nav>
         </header>
         <section id="mainContent">
             <article id="content">
-                <h3><?=Router::ViewTitle()?></h3>
                 <?php require_once Router::GetView(); ?> 
             </article>
             <span id="split"></span>

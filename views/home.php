@@ -1,12 +1,13 @@
 <?php
     $pageData = PageContent::GetContentByName('Forsiden');
 ?>
+<h3><?=Router::ViewTitle()?></h3>
 <section id="home">
     <article>
         <?php
             if(isset($pageData->filename)){
         ?>
-                <img src="./assets/media/<?=$pageData->filename?>" alt="City cykler">
+                <img src="<?=Router::$BASE?>assets/media/<?=$pageData->filename?>" alt="City cykler">
         <?php } ?>
         <p><?=htmlspecialchars_decode($pageData->pageText)?></p>
     </article>
