@@ -42,7 +42,23 @@ $pagesData = PageContent::GetPagesWithContent();
                     <?=htmlspecialchars_decode($page->pageText)?>              
         </textarea> 
                 
-                
+                <br>
+                <?php
+                    if(isset($page->filename))
+                    {
+                ?>
+                    <img src="../assets/media/<?=$page->filename?>" height="150" width="150">
+                <?php
+                    }else{
+                ?>
+                <p>Der er ikke noget billede tilknyttet til '<?=$page->pageName?>'</p>
+                <?php
+                    }
+                ?>
+                <br>
+                <label for="pageImg">Vælg andet billede: </label>
+                <input type="file" id="pageImg" name="pageImage">
+                <br><br>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" name="btnSubmit" value="<?=$page->pageId?>">
                     <i class="material-icons">save</i> Gem
                 </button>
