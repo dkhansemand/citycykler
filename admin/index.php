@@ -86,6 +86,7 @@
           <a class="mdl-navigation__link" href="<?=Router::Link('/Categories')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">list</i>Kategorier</a>
           <a class="mdl-navigation__link" href="<?=Router::Link('/Products')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">store</i>Produkter</a>
           <a class="mdl-navigation__link" href="<?=Router::Link('/Offers')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Tilbud</a>
+          <a class="mdl-navigation__link" href="<?=Router::Link('/Settings')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Indstillinger</a>
           <div class="mdl-layout-spacer"></div>
           
         </nav>
