@@ -37,23 +37,42 @@ class MediaUpload extends Database
                 $fileName = time() . '_' . substr($file['name'], strrpos($file['name'], '.', -10), 10);
                 $fileName = str_replace(' ', '', $fileName) . str_replace('image/', '.', $imageData['mime']);
                 if(sizeof($sizes) > 0){
-                    
+                    $mediaIds = [];
+                    foreach($sizes as $size)
+                    {
+                        if(strpos($size, 'x') !== false){
+                            $newSize = explode('x', $size);
+                            if(move_uploaded_file($file['tmp_name'], self::$uploadFolder . $fileName)){
+                                if(MediaResizer::Generate(self::$uploadFolder . $fileName, self::$uploadFolder . $size .'_'. $fileName, $newSize[0], $newSize[1])){
+                                    (new self)->query("INSERT INTO media (`filename`, `mime`)VALUES(:FNAME, :FTYPE);", 
+                                                            [
+                                                                ":FNAME" =>  $size .'_' . $fileName,
+                                                                ":FTYPE" => $imageData['mime']
+                                                            ]);
+                                    $mediaId = (new self)->query("SELECT mediaId FROM media WHERE `filename` = :FNAME;", [':FNAME' => $size.'_' . $fileName])->fetch()->mediaId;
+                                    array_push($mediaIds, $mediaId);
+                                }
+                                unlink(self::$uploadFolder . $fileName);
+                            }
+                        }
+                    }
+                    return ['err' => false, 'data' => $mediaIds];
                 }else{
                     try
                     {
                         if(move_uploaded_file($file['tmp_name'], self::$uploadFolder . $fileName)){
-                            (new self)->query("INSERT INTO media (mediaFilename, mediaType)VALUES(:FNAME, :FTYPE);", 
+                            (new self)->query("INSERT INTO media (`filename`, `mime`)VALUES(:FNAME, :FTYPE);", 
                             [
                                 ":FNAME" => $fileName,
                                 ":FTYPE" => $imageData['mime']
                             ]);
-                            $media = (new self)->query("SELECT mediaId FROM media WHERE mediaId = LAST_INSERT_ID()")->fetch();
+                            $media = (new self)->query("SELECT mediaId FROM media WHERE `filename` = :FNAME;", [':FNAME' => $fileName])->fetch();
                             return ['err' => false, 'data' => $media->mediaId];
                         }
                     }catch(Exception $err)
                     {
                         unlink(self::$uploadFolder.$fileName);
-                        return ['err' => true, 'data' => 'Fejl!']; 
+                        return ['err' => true, 'data' => 'Fejl! ' . $err->getMessage()]; 
                     }
                 }
     
@@ -63,7 +82,7 @@ class MediaUpload extends Database
                     'data' => 'Filen ' . $_FILES[$inputName]['name'] . ' kunne ikke uploades til serveren! Fejlkode ' . $_FILES[$inputName]['error'] . ' - ' . self::$error[$_FILES[$inputName]['error']]
                 ];
             }
-            return ['err' => false, 'data' => 'Ingen filer sendt med! $_FILES er tomt'];
+            return ['err' => true, 'data' => 'Ingen filer sendt med! $_FILES er tomt'];
         }
     }
 }

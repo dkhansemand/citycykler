@@ -14,11 +14,15 @@ class PageContent extends Database
         }
     }
 
-    public static function UpdatePageContent($pageId, $pageContent)
+    public static function UpdatePageContent($pageId, $pageContent, $image = null)
     {
         try
         {
-            return (new self)->query("UPDATE pageContent SET pageText = :PTEXT WHERE pageId = :PID", [':PID' => $pageId, ':PTEXT' => $pageContent]);
+            if($image === null){
+                return (new self)->query("UPDATE pageContent SET pageText = :PTEXT WHERE pageId = :PID", [':PID' => $pageId, ':PTEXT' => $pageContent]);
+            }else{
+                return (new self)->query("UPDATE pageContent SET pageText = :PTEXT, pageImage = :IMG WHERE pageId = :PID", [':PID' => $pageId, ':PTEXT' => $pageContent, ':IMG' => $image]);
+            }
         }catch(Exception $e)
         {
             throw new Exception("Fejl [PageContent-class]: " . $e->getMessage());

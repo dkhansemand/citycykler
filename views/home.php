@@ -3,7 +3,7 @@
 ?>
 <section id="home">
     <article>
-        <img src="./assets/media/homePicture.png" alt="City cykler">
+        <img src="./assets/media/<?=$pageData->filename?>" alt="City cykler">
         <p><?=htmlspecialchars_decode($pageData->pageText)?></p>
     </article>
 

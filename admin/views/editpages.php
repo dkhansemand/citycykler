@@ -9,8 +9,20 @@ if(isset($POST['btnSubmit'])){
     
     if(sizeof($error) === 0)
     {
-        PageContent::UpdatePageContent($POST['btnSubmit'], $pageText);
-        $success = 'Side teksten er nu blevet opdateret!';
+        if(!empty($_FILES['pageImage']['name'])){
+            $upload = MediaUpload::UploadImage('pageImage', ['268x204']);
+            var_dump($upload);
+            if($upload['err'] == false)
+            {
+                PageContent::UpdatePageContent($POST['btnSubmit'], $pageText, $upload['data'][0]);
+                $success = 'Side teksten er nu blevet opdateret!';
+            }else{
+                $success = 'Der skete den fejl! ' . $upload['data'];
+            }
+        }else{
+            PageContent::UpdatePageContent($POST['btnSubmit'], $pageText);
+            $success = 'Side teksten er nu blevet opdateret!';
+        }
     }
 }
 $pagesData = PageContent::GetPagesWithContent();
