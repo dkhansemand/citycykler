@@ -3,7 +3,11 @@
 ?>
 <section id="home">
     <article>
-        <img src="./assets/media/<?=$pageData->filename?>" alt="City cykler">
+        <?php
+            if(isset($pageData->filename)){
+        ?>
+                <img src="./assets/media/<?=$pageData->filename?>" alt="City cykler">
+        <?php } ?>
         <p><?=htmlspecialchars_decode($pageData->pageText)?></p>
     </article>
 
