@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <section id="headerLayout">
-        </section>
+    <div id="headerLayout">
+        </div>
         <div id="container">
                 <header id="topHeader">
                     <div>
