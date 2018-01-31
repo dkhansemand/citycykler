@@ -9,8 +9,9 @@
     Router::AddEndpoint('/Logout', 'logout.php');
     Router::AddEndpoint('/Dashboard','dashboard.php', ['guard' => new Guard(), 'title' => 'Dashboard']);
     Router::AddEndpoint('/EditPages','editpages.php', ['guard' => new Guard(), 'title' => 'Ret sidetekster']);
-    Router::AddEndpoint('/Categories','categories.php', ['guard' => new Guard(), 'title' => 'Kategorier']);
-    Router::AddEndpoint('/Category/Add','newCategory.php', ['guard' => new Guard(), 'title' => 'Tilføj ny kategori']);
+    Router::AddEndpoint('/Categories','category/categories.php', ['guard' => new Guard(), 'title' => 'Kategorier']);
+    Router::AddEndpoint('/Category/Add','category/newCategory.php', ['guard' => new Guard(), 'title' => 'Tilføj ny kategori']);
+    Router::AddEndpoint('/Category/Edit/:ID','category/editCategory.php', ['guard' => new Guard(), 'title' => 'Ret kategori']);
     Router::Init($_SERVER['REQUEST_URI']);
    
 ?>

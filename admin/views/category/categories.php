@@ -43,7 +43,7 @@
                                 <img src="../assets/media/<?=$category->filename?>" alt="<?=$category->categoryName?>">
                             </td>
                             <td class="mdl-data-table__cell--non-numeric">
-                                <a href="#<?=$category->categoryId?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                <a href="<?=Router::Link('/Category/Edit/'.$category->categoryId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                                     <i class="material-icons">edit</i>
                                 </a>
                                 <a href="#<?=$category->categoryId?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
