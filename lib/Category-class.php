@@ -87,4 +87,23 @@ class Category extends Database
             throw new Exception("Fejl! [Category-class]: " . $err->getMessage());
         }
     }
+
+    public static function Delete($categoryId)
+    {
+        try
+        {
+            $mediaInfo = (new self)->query("SELECT categoryImage, `filename` FROM category 
+                                                INNER JOIN media ON categoryImage = mediaId 
+                                                WHERE categoryId = :ID", [':ID' => $categoryId])->fetch();
+            (new self)->query("DELETE FROM category WHERE categoryId = :ID", [':ID' => $categoryId]);
+            if(unlink(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . $mediaInfo->filename)){
+                (new self)->query("DELETE FROM media WHERE mediaId = :ID", [':ID' => $mediaInfo->categoryImage]);
+                return true;
+            }
+            return false;
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Category-class]: " . $err->getMessage());
+        }
+    }
 }

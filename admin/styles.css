@@ -224,3 +224,6 @@ _:-ms-input-placeholder, :root .demo-graph {
 .success{
   color: green;
 }
+.btn-red{
+  background-color: red;
+}

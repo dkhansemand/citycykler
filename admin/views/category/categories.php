@@ -43,10 +43,10 @@
                                 <img src="../assets/media/<?=$category->filename?>" alt="<?=$category->categoryName?>">
                             </td>
                             <td class="mdl-data-table__cell--non-numeric">
-                                <a href="<?=Router::Link('/Category/Edit/'.$category->categoryId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                <a href="<?=Router::Link('/Category/Edit/'.$category->categoryId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
                                     <i class="material-icons">edit</i>
                                 </a>
-                                <a href="#<?=$category->categoryId?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                <a href="<?=Router::Link('/Category/Delete/'.$category->categoryId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
                                     <i class="material-icons">delete</i>
                                 </a>
                             </td>

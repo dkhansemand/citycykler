@@ -12,6 +12,7 @@
     Router::AddEndpoint('/Categories','category/categories.php', ['guard' => new Guard(), 'title' => 'Kategorier']);
     Router::AddEndpoint('/Category/Add','category/newCategory.php', ['guard' => new Guard(), 'title' => 'Tilføj ny kategori']);
     Router::AddEndpoint('/Category/Edit/:ID','category/editCategory.php', ['guard' => new Guard(), 'title' => 'Ret kategori']);
+    Router::AddEndpoint('/Category/Delete/:ID','category/deleteCategory.php', ['guard' => new Guard(), 'title' => 'Slet kategori']);
     Router::Init($_SERVER['REQUEST_URI']);
    
 ?>
