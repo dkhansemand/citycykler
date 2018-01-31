@@ -9,6 +9,8 @@
     Router::AddEndpoint('/Logout', 'logout.php');
     Router::AddEndpoint('/Dashboard','dashboard.php', ['guard' => new Guard(), 'title' => 'Dashboard']);
     Router::AddEndpoint('/EditPages','editpages.php', ['guard' => new Guard(), 'title' => 'Ret sidetekster']);
+    Router::AddEndpoint('/Categories','categories.php', ['guard' => new Guard(), 'title' => 'Kategorier']);
+    Router::AddEndpoint('/Category/Add','newCategory.php', ['guard' => new Guard(), 'title' => 'Tilføj ny kategori']);
     Router::Init($_SERVER['REQUEST_URI']);
    
 ?>
@@ -79,6 +81,9 @@
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
           <a class="mdl-navigation__link" href="<?=Router::Link('/Dashboard')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>Dashboard</a>
           <a class="mdl-navigation__link" href="<?=Router::Link('/EditPages')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">edit</i>Ret sidetekster</a>
+          <a class="mdl-navigation__link" href="<?=Router::Link('/Categories')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">list</i>Kategorier</a>
+          <a class="mdl-navigation__link" href="<?=Router::Link('/Products')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">store</i>Produkter</a>
+          <a class="mdl-navigation__link" href="<?=Router::Link('/Offers')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Tilbud</a>
           <div class="mdl-layout-spacer"></div>
           
         </nav>
