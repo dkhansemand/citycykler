@@ -11,7 +11,7 @@ if(isset($POST['btnSubmit'])){
     {
         if(!empty($_FILES['pageImage']['name'])){
             $upload = MediaUpload::UploadImage('pageImage', ['268x204']);
-            var_dump($upload);
+           // var_dump($upload);
             if($upload['err'] == false)
             {
                 PageContent::UpdatePageContent($POST['btnSubmit'], $pageText, $upload['data'][0]);

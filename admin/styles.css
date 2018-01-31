@@ -217,3 +217,10 @@ _:-ms-input-placeholder, :root .demo-graph {
 .mdl-grid {
   margin: 0 10px;
 }
+
+.error{
+  color: red;
+}
+.success{
+  color: green;
+}

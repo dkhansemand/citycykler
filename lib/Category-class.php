@@ -24,4 +24,21 @@ class Category extends Database
             throw new Exception("Fejl! [Category-class]: " . $err->getMessage());
         }
     }
+
+    public static function New($categoryType, $categoryName, $categoryImage)
+    {
+        try
+        {
+            return (new self)->query("INSERT INTO category (categoryName, categoryImage, categoryType)
+                                        VALUES(:CNAME, :CIMG, :CTYPE)",
+                                        [
+                                            ':CNAME' => $categoryName,
+                                            ':CIMG' => $categoryImage,
+                                            ':CTYPE' => $categoryType 
+                                        ]);
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Category-class]: " . $err->getMessage());
+        }
+    }
 }
