@@ -13,6 +13,11 @@
     Router::AddEndpoint('/Category/Add','category/newCategory.php', ['guard' => new Guard(), 'title' => 'Tilføj ny kategori']);
     Router::AddEndpoint('/Category/Edit/:ID','category/editCategory.php', ['guard' => new Guard(), 'title' => 'Ret kategori']);
     Router::AddEndpoint('/Category/Delete/:ID','category/deleteCategory.php', ['guard' => new Guard(), 'title' => 'Slet kategori']);
+    Router::AddEndpoint('/Brands','brands/brands.php', ['guard' => new Guard(), 'title' => 'Mærker']);
+    Router::AddEndpoint('/Brand/Add','brands/newBrand.php', ['guard' => new Guard(), 'title' => 'Tilføj mærke']);
+    Router::AddEndpoint('/Brand/Edit/:ID','brands/editBrand.php', ['guard' => new Guard(), 'title' => 'Ret mærke']);
+    Router::AddEndpoint('/Brand/Delete/:ID','brands/deleteBrand.php', ['guard' => new Guard(), 'title' => 'Slet mærke']);
+    
     Router::Init($_SERVER['REQUEST_URI']);
    
 ?>
@@ -84,6 +89,7 @@
           <a class="mdl-navigation__link" href="<?=Router::Link('/Dashboard')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>Dashboard</a>
           <a class="mdl-navigation__link" href="<?=Router::Link('/EditPages')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">edit</i>Ret sidetekster</a>
           <a class="mdl-navigation__link" href="<?=Router::Link('/Categories')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">list</i>Kategorier</a>
+          <a class="mdl-navigation__link" href="<?=Router::Link('/Brands')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">receipt</i>Mærker</a>
           <a class="mdl-navigation__link" href="<?=Router::Link('/Products')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">store</i>Produkter</a>
           <a class="mdl-navigation__link" href="<?=Router::Link('/Offers')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Tilbud</a>
           <a class="mdl-navigation__link" href="<?=Router::Link('/Settings')?>"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Indstillinger</a>
