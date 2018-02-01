@@ -202,3 +202,21 @@ footer{
     width: 100%;
 }
 
+#categories{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    padding: 15px;
+    margin-top: 50px;
+}
+
+#categories #category-item{
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: 15px 0;
+    text-align: center;
+}
+#categories #category-item a {
+    color: inherit;
+    text-decoration: none;
+}
