@@ -1,4 +1,4 @@
-<h3><?=ucfirst(rawurldecode(Router::GetParam(':CATEGORY')))?></h3>
+<h3><?=ucfirst(Router::GetParam(':CATEGORY'))?></h3>
 <section id="categories">
     <?php
         foreach(Category::GetCategoriesByType(Router::GetParam(':CATEGORY')) as $category){

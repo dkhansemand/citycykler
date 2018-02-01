@@ -17,6 +17,10 @@
     Router::AddEndpoint('/BrandAdd','brands/newBrand.php', ['guard' => new Guard(), 'title' => 'Tilføj mærke']);
     Router::AddEndpoint('/BrandEdit/:ID','brands/editBrand.php', ['guard' => new Guard(), 'title' => 'Ret mærke']);
     Router::AddEndpoint('/BrandDelete/:ID','brands/deleteBrand.php', ['guard' => new Guard(), 'title' => 'Slet mærke']);
+    Router::AddEndpoint('/Products','products/productlist.php', ['guard' => new Guard(), 'title' => 'Produkter']);
+    Router::AddEndpoint('/ProductAdd','products/newProduct.php', ['guard' => new Guard(), 'title' => 'Tilføj produkt']);
+    Router::AddEndpoint('/ProductEdit/:ID','products/editProduct.php', ['guard' => new Guard(), 'title' => 'Ret produkt']);
+    Router::AddEndpoint('/ProductDelete/:ID','products/deleteProduct.php', ['guard' => new Guard(), 'title' => 'Slet produkt']);
     
     Router::Init($_SERVER['REQUEST_URI']);
    

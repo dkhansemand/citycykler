@@ -34,9 +34,9 @@ class Router
         return self::$params;
     }
 
-    public static function GetParam(string $param)
+    public static function GetParam(string $param) : string
     {
-        return self::$params[$param] ?? null;
+        return rawurldecode(self::$params[$param]) ?? null;
     }
 
     public static function GetView() : string
