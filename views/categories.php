@@ -2,6 +2,7 @@
     <pre>
         <?php
             var_dump(Router::GetParams());
-            var_dump(Category::GetCategoriesByType(Router::GetParam(':CATEGORY')))
+            var_dump(Category::GetCategoriesByType(Router::GetParam(':CATEGORY')));
+            
         ?>
     </pre>

@@ -171,4 +171,9 @@ class Router
     {
         self::Redirect(self::$defaultRoute);
     }
+
+    public static function IsActive(string $route) : string
+    {
+        return (self::$route === $route) ? ' active ' : '';
+    }
 }

@@ -45,9 +45,9 @@
     <section id="mainContainer">
         <header>
             <nav>
-                <a href="<?=Router::Link('/Forsiden')?>" class="active">Forsiden</a>
-                <a href="<?=Router::Link('/Kategori/Cykler')?>">Cykler</a>
-                <a href="<?=Router::Link('/Kategori/Udstyr')?>">Udstyr</a>
+                <a href="<?=Router::Link('/Forsiden')?>" class="<?=Router::IsActive('/Forsiden')?>">Forsiden</a>
+                <a href="<?=Router::Link('/Kategori/Cykler')?>" class="<?=Router::IsActive('/Kategori/Cykler')?>">Cykler</a>
+                <a href="<?=Router::Link('/Kategori/Udstyr')?>" class="<?=Router::IsActive('/Kategori/Udstyr')?>">Udstyr</a>
                 <a href="#">Kontakt</a>
                 <a href="#">Nyheder</a>
             </nav>
