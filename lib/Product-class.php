@@ -17,4 +17,24 @@ class Product extends Database
             throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
         }
     }
+
+    public static function New($category, $brand, $model, $price, $productDesc, $productImage)
+    {
+        try
+        {
+            return (new self)->query("INSERT INTO products (productDesc, productPrice, productCategory, productImage, productModel, productBrand)
+                                                     VALUES(:PDESC, :PRICE, :PCAT, :PIMG, :PMODEL, :PBRAND)",
+                                                     [
+                                                         ':PDESC' => $productDesc,
+                                                         ':PRICE' => $price,
+                                                         ':PCAT' => $category,
+                                                         ':PIMG' => $productImage,
+                                                         ':PMODEL' => $model,
+                                                         ':PBRAND' => $brand
+                                                     ]);
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
+        }
+    }
 }

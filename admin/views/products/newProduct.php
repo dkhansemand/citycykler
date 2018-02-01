@@ -4,7 +4,29 @@
 <?php
 
     if(isset($POST['btnSubmit'])){
-         
+        $error = [];
+        $categoryType = (isset($POST['categoryType']) && $POST['categoryType'] != 0) ? $POST['categoryType'] : $error['categoryType'] = 'Der skal vælges en hovedkategori.';
+        $brand = (isset($POST['brand']) && $POST['brand'] != 0) ? $POST['brand'] : $error['brand'] = 'Der skal vælges en hovedkategori.';
+        $productModel = Validate::stringBetween($POST['productModel'], 2 , 15) ? $POST['productModel'] : $error['productModel'] = 'Produkt model skal udfyldes og være mellem 2 og 15 tegn. <br>Samt må det kun indholde bogstaver og tal.';
+        $productPrice = is_numeric($POST['productPrice']) ? $POST['productPrice'] : $error['productPrice'] = 'Produkt prisen er ikke angivet korrekt';
+        $productDesc = Validate::stringBetween($POST['productDesc'], 2 , 999) ? $POST['productDesc'] : $error['productDesc'] = 'Produkt beskrivelse skal udfyldes og være mellem 2 og 999 tegn. <br>Samt må det kun indholde bogstaver og tal.';
+        $productImage = !empty($_FILES['productImage']['name']) ? 'productImage' : $error['productImage'] = 'Billede skal tilføjes.';
+
+        if(sizeof($error) === 0){
+            $upload = MediaUpload::UploadImage($productImage, ['116x80']);
+            //var_dump($upload);
+            if($upload['err'] == false)
+            {
+                //Category::New($categoryType, $categoryName, $upload['data'][0]);
+                Product::New($categoryType, $brand, $productModel, $productPrice, $productDesc, $upload['data'][0]);
+                $success = 'Produkt er nu blevet tilføjet';
+                unset($POST);
+            }else{
+                $addError = 'Der skete den fejl! ' . $upload['data'];
+            }
+        }else{
+            $addError = 'Der skete en fejl.';
+        }
     }
 ?>
 <form action="" method="post" enctype="multipart/form-data">
@@ -13,8 +35,8 @@
             <?= isset($success) ? '<h5 class="success">'.$success.'</h5>' : ''?>
             <?= isset($addError) ? '<h5 class="error">'.$addError.'</h5>' : ''?>
         </div>
-        <div class="mdl-cell mdl-cell--12-col">
-            <select name="category" autofocus required>
+        <div class="mdl-cell mdl-cell--2-col">
+            <select name="categoryType" autofocus required>
                 <option value="0" <?= isset($POST['categoryType']) ? '' : 'selected'?> disabled>Vælg kategori...</option>
                 <?php
                     foreach(Category::GetCategoriesByType(Router::GetParam(':CATEGORYTYPE')) as $Category)
@@ -27,7 +49,7 @@
             </select>    
             <?= isset($error['categoryType']) ? '<p class="error">'.$error['categoryType'].'</p>' : ''?>
         </div>
-        <div class="mdl-cell mdl-cell--12-col">
+        <div class="mdl-cell mdl-cell--1-col">
             <select name="brand" autofocus required>
                 <option value="0" <?= isset($POST['brand']) ? '' : 'selected'?> disabled>Vælg mærke...</option>
                 <?php
@@ -54,12 +76,14 @@
                 <label class="mdl-textfield__label" for="productPrice">Pris</label>
                 <span class="mdl-textfield__error">Pris er ikke i korrekt format!</span>
             </div>
+            <?= isset($error['productprice']) ? '<p class="error">'.$error['productPrice'].'</p>' : ''?>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
             <div class="mdl-textfield mdl-js-textfield">
                 <textarea class="mdl-textfield__input" type="text" rows= "5" id="productDesc" name="productDesc" required></textarea>
                 <label class="mdl-textfield__label" for="productDesc">Produkt beskrivelse</label>
             </div>
+            <?= isset($error['productDesc']) ? '<p class="error">'.$error['productDesc'].'</p>' : ''?>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
             <label for="productImage">Vælg et billede: </label>
