@@ -10,13 +10,13 @@
     Router::AddEndpoint('/Dashboard','dashboard.php', ['guard' => new Guard(), 'title' => 'Dashboard']);
     Router::AddEndpoint('/EditPages','editpages.php', ['guard' => new Guard(), 'title' => 'Ret sidetekster']);
     Router::AddEndpoint('/Categories','category/categories.php', ['guard' => new Guard(), 'title' => 'Kategorier']);
-    Router::AddEndpoint('/Category/Add','category/newCategory.php', ['guard' => new Guard(), 'title' => 'Tilføj ny kategori']);
-    Router::AddEndpoint('/Category/Edit/:ID','category/editCategory.php', ['guard' => new Guard(), 'title' => 'Ret kategori']);
-    Router::AddEndpoint('/Category/Delete/:ID','category/deleteCategory.php', ['guard' => new Guard(), 'title' => 'Slet kategori']);
+    Router::AddEndpoint('/CategoryAdd','category/newCategory.php', ['guard' => new Guard(), 'title' => 'Tilføj ny kategori']);
+    Router::AddEndpoint('/CategoryEdit/:ID','category/editCategory.php', ['guard' => new Guard(), 'title' => 'Ret kategori']);
+    Router::AddEndpoint('/CategoryDelete/:ID','category/deleteCategory.php', ['guard' => new Guard(), 'title' => 'Slet kategori']);
     Router::AddEndpoint('/Brands','brands/brands.php', ['guard' => new Guard(), 'title' => 'Mærker']);
-    Router::AddEndpoint('/Brand/Add','brands/newBrand.php', ['guard' => new Guard(), 'title' => 'Tilføj mærke']);
-    Router::AddEndpoint('/Brand/Edit/:ID','brands/editBrand.php', ['guard' => new Guard(), 'title' => 'Ret mærke']);
-    Router::AddEndpoint('/Brand/Delete/:ID','brands/deleteBrand.php', ['guard' => new Guard(), 'title' => 'Slet mærke']);
+    Router::AddEndpoint('/BrandAdd','brands/newBrand.php', ['guard' => new Guard(), 'title' => 'Tilføj mærke']);
+    Router::AddEndpoint('/BrandEdit/:ID','brands/editBrand.php', ['guard' => new Guard(), 'title' => 'Ret mærke']);
+    Router::AddEndpoint('/BrandDelete/:ID','brands/deleteBrand.php', ['guard' => new Guard(), 'title' => 'Slet mærke']);
     
     Router::Init($_SERVER['REQUEST_URI']);
    

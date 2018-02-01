@@ -1,6 +1,6 @@
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--12-col">
-        <a href="<?=Router::Link('/Category/Add');?>" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+        <a href="<?=Router::Link('/CategoryAdd');?>" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
             <i class="material-icons">add</i>
         </a>
     </div>
@@ -43,10 +43,10 @@
                                 <img src="../assets/media/<?=$category->filename?>" alt="<?=$category->categoryName?>">
                             </td>
                             <td class="mdl-data-table__cell--non-numeric">
-                                <a href="<?=Router::Link('/Category/Edit/'.$category->categoryId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                                <a href="<?=Router::Link('/CategoryEdit/'.$category->categoryId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
                                     <i class="material-icons">edit</i>
                                 </a>
-                                <a href="<?=Router::Link('/Category/Delete/'.$category->categoryId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
+                                <a href="<?=Router::Link('/CategoryDelete/'.$category->categoryId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
                                     <i class="material-icons">delete</i>
                                 </a>
                             </td>

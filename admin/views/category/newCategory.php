@@ -48,7 +48,7 @@
         <div class="mdl-cell mdl-cell--12-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="categoryName" name="categoryName" value="<?=@$POST['categoryName']?>" required>
-                <label class="mdl-textfield__label" for="sample3">Kategori navn</label>
+                <label class="mdl-textfield__label" for="categoryName">Kategori navn</label>
             </div>
             <?= isset($error['categoryName']) ? '<p class="error">'.$error['categoryName'].'</p>' : ''?>
         </div>
