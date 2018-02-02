@@ -63,14 +63,15 @@
             </select>    
             <?= isset($error['brand']) ? '<p class="error">'.$error['brand'].'</p>' : ''?>
         </div>
-        <div class="mdl-cell mdl-cell--12-col">
+        <div class="mdl-cell mdl-cell--6-col"></div>
+        <div class="mdl-cell mdl-cell--4-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="productModel" name="productModel" value="<?=@$POST['productModel']?>" required>
                 <label class="mdl-textfield__label" for="productModel">Model</label>
             </div>
             <?= isset($error['productModel']) ? '<p class="error">'.$error['productModel'].'</p>' : ''?>
         </div>
-        <div class="mdl-cell mdl-cell--12-col">
+        <div class="mdl-cell mdl-cell--4-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" name="productPrice" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="productPrice" required>
                 <label class="mdl-textfield__label" for="productPrice">Pris</label>
@@ -78,12 +79,29 @@
             </div>
             <?= isset($error['productprice']) ? '<p class="error">'.$error['productPrice'].'</p>' : ''?>
         </div>
-        <div class="mdl-cell mdl-cell--12-col">
+        <div class="mdl-cell mdl-cell--12-col"></div>
+        <div class="mdl-cell mdl-cell--4-col">
             <div class="mdl-textfield mdl-js-textfield">
                 <textarea class="mdl-textfield__input" type="text" rows= "5" id="productDesc" name="productDesc" required></textarea>
                 <label class="mdl-textfield__label" for="productDesc">Produkt beskrivelse</label>
             </div>
             <?= isset($error['productDesc']) ? '<p class="error">'.$error['productDesc'].'</p>' : ''?>
+        </div>
+        <div class="mdl-cell mdl-cell--8-col">
+            <div id="colorsList"> 
+            <?php
+                foreach(Product::GetColors() as $color){
+            ?>
+                <span>
+                    <label for="color<?=$color->colorId?>">
+                        <img src="data:<?=$color->colorMime?>;base64,<?=base64_encode($color->colorSrc)?>">
+                    </label>
+                    <input type="checkbox" name="color[]" id="color<?=$color->colorId?>" value="<?=$olor->colorId?>">
+                </span>
+            <?php
+                }
+            ?>
+            </div>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
             <label for="productImage">Vælg et billede: </label>

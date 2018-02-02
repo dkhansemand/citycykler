@@ -227,3 +227,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 .btn-red{
   background-color: red;
 }
+#colorsList{
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+}

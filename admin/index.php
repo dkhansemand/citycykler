@@ -21,7 +21,7 @@
     Router::AddEndpoint('/ProductAdd/:CATEGORYTYPE','products/newProduct.php', ['guard' => new Guard(), 'title' => 'Tilføj produkt']);
     Router::AddEndpoint('/ProductEdit/:ID','products/editProduct.php', ['guard' => new Guard(), 'title' => 'Ret produkt']);
     Router::AddEndpoint('/ProductDelete/:ID','products/deleteProduct.php', ['guard' => new Guard(), 'title' => 'Slet produkt']);
-    
+    Router::AddEndpoint('/ProductColorSecret', 'products/colors.php', ['guard' => new Guard(), 'title' => 'Opret farve']);
     Router::Init($_SERVER['REQUEST_URI']);
    
 ?>

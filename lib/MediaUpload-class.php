@@ -85,4 +85,39 @@ class MediaUpload extends Database
             return ['err' => true, 'data' => 'Ingen filer sendt med! $_FILES er tomt'];
         }
     }
+
+    public static function Image2Blob($inputName, $colorName)
+    {
+        if(array_key_exists($inputName, $_FILES)){
+            if($_FILES[$inputName]['error'] === 0 && $_FILES[$inputName]['size'] > 0){
+                $file = $_FILES[$inputName];
+                $imageData = getimagesize($file['tmp_name']);
+               
+                if(!in_array($imageData['mime'], self::$mimeType)){
+                    return [
+                        'err' => true,
+                        'data' => 'Filtypen er ikke tilladt.'
+                    ];
+                }
+                try
+                {
+                   
+                   
+                        $imageSrc = fopen($file['tmp_name'], 'rb');
+                        $queryBlob = (new self)->prepare("INSERT INTO colors (colorName, colorSrc, colorMime)VALUES(:CNAME, :CDATA, :CMIME)");
+                        $queryBlob->bindParam(':CNAME', $colorName, PDO::PARAM_STR);
+                        $queryBlob->bindParam(':CDATA', $imageSrc, PDO::PARAM_LOB);
+                        $queryBlob->bindParam(':CMIME', $imageData['mime'], PDO::PARAM_STR);
+                        $queryBlob->execute();
+                        unlink($file['tmp_name']);
+                        return ['err' => false, 'data' => true];
+                    
+                }catch(Exception $err)
+                {
+                    unlink(self::$uploadFolder.$fileName);
+                    return ['err' => true, 'data' => 'Fejl! ' . $err->getMessage()]; 
+                }
+            }
+        }
+    }
 }

@@ -37,4 +37,15 @@ class Product extends Database
             throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
         }
     }
+
+    public static function GetColors() : array
+    {
+        try
+        {
+            return (new self)->query("SELECT colorId, colorName, colorSrc, colorMime FROM colors")->fetchAll();
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessages());
+        }
+    }
 }
