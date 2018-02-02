@@ -22,16 +22,46 @@ class Product extends Database
     {
         try
         {
-            return (new self)->query("INSERT INTO products (productDesc, productPrice, productCategory, productImage, productModel, productBrand)
-                                                     VALUES(:PDESC, :PRICE, :PCAT, :PIMG, :PMODEL, :PBRAND)",
-                                                     [
-                                                         ':PDESC' => $productDesc,
-                                                         ':PRICE' => $price,
-                                                         ':PCAT' => $category,
-                                                         ':PIMG' => $productImage,
-                                                         ':PMODEL' => $model,
-                                                         ':PBRAND' => $brand
-                                                     ]);
+            (new self)->query("INSERT INTO products (productDesc, productPrice, productCategory, productImage, productModel, productBrand)
+                                    VALUES(:PDESC, :PRICE, :PCAT, :PIMG, :PMODEL, :PBRAND)",
+                                    [
+                                        ':PDESC' => $productDesc,
+                                        ':PRICE' => $price,
+                                        ':PCAT' => $category,
+                                        ':PIMG' => $productImage,
+                                        ':PMODEL' => $model,
+                                        ':PBRAND' => $brand
+                                    ]);
+            return (new self)->query("SELECT productId FROM products ORDER BY productDateAdded DESC LIMIT 1")->fetch()->productId;
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
+        }
+    }
+
+    public static function GetLastInsertedProduct()
+    {
+        try
+        {
+            
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
+        }
+    }
+
+    public static function AddProductColors($productId, array $colors)
+    {
+        try
+        {
+            if(sizeof($colors) > 0){
+                foreach($colors as $color){
+                    (new self)->query("INSERT INTO productColors (fkProductId, fkColorId)VALUES(:PID, :CID)",[':PID' => $productId, ':CID' => $color]);
+                }
+                return true;
+            }else{
+                return false;
+            }
         }catch(Exception $err)
         {
             throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
