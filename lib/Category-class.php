@@ -26,6 +26,19 @@ class Category extends Database
         }
     }
 
+    public static function GetCategoriesById($categoryId)
+    {
+        try
+        {
+            return (new self)->query("SELECT categoryId, categoryName, categoryType, categoryTypeName FROM categorytypes
+                                        INNER JOIN category ON categoryType = categoryTypeId
+                                        WHERE categoryId = :ID", [':ID' => $categoryId])->fetchAll();
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Category-class]: " . $err->getMessage());
+        }
+    }
+
     public static function GetCategoriesByType($categoryType)
     {
         try

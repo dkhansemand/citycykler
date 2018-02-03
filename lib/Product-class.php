@@ -78,4 +78,31 @@ class Product extends Database
             throw new Exception("Fejl! [Product-class.php]: " . $err->getMessages());
         }
     }
+
+    public static function GetColorsByProductId($productId) : array
+    {
+        try
+        {
+            return (new self)->query("SELECT fkProductId, fkColorId FROM productColors WHERE fkProductId = :ID", [':ID' => $productId])->fetchAll();
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessages());
+        }
+    }
+
+    public static function GetProductById($productId)
+    {
+        try
+        {
+            return (new self)->query("SELECT productId, productCategory, productBrand, `filename`, productDesc, productModel, productPrice FROM products
+                                        INNER JOIN brands ON productBrand = brandId
+                                        INNER JOIN category ON productCategory = categoryId
+                                        INNER JOIN categorytypes ON categoryType = categoryTypeId
+                                        INNER JOIN media ON productImage = mediaId
+                                        WHERE productId = :ID", [':ID' => $productId])->fetch();
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessages());
+        }
+    }
 }
