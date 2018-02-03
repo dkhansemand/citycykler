@@ -95,7 +95,7 @@
             ?>
                 <span>
                     <label for="color<?=$color->colorId?>">
-                        <img src="data:<?=$color->colorMime?>;base64,<?=base64_encode($color->colorSrc)?>">
+                        <img src="data:<?=$color->colorMime?>;base64,<?=base64_encode($color->colorSrc)?>" alt="<?=$color->colorName?>">
                     </label>
                     <input type="checkbox" name="colors[]" id="color<?=$color->colorId?>" value="<?=$color->colorId?>">
                 </span>

@@ -10,20 +10,26 @@
         $productModel = Validate::stringBetween($POST['productModel'], 2 , 15) ? $POST['productModel'] : $error['productModel'] = 'Produkt model skal udfyldes og være mellem 2 og 15 tegn. <br>Samt må det kun indholde bogstaver og tal.';
         $productPrice = is_numeric($POST['productPrice']) ? $POST['productPrice'] : $error['productPrice'] = 'Produkt prisen er ikke angivet korrekt';
         $productDesc = Validate::stringBetween($POST['productDesc'], 2 , 999) ? $POST['productDesc'] : $error['productDesc'] = 'Produkt beskrivelse skal udfyldes og være mellem 2 og 999 tegn. <br>Samt må det kun indholde bogstaver og tal.';
-        $productImage = !empty($_FILES['productImage']['name']) ? 'productImage' : $error['productImage'] = 'Billede skal tilføjes.';
         $productColors = isset($POST['colors']) && (sizeof($POST['colors']) > 0) ? $POST['colors'] : $error['colors'] = 'Der skal min vælges en farve.';
         if(sizeof($error) === 0){
-            $upload = MediaUpload::UploadImage($productImage, ['116x80']);
-            //var_dump($upload);
-            if($upload['err'] == false)
-            {
-                //Category::New($categoryType, $categoryName, $upload['data'][0]);
-                $productId = Product::New($categoryType, $brand, $productModel, $productPrice, $productDesc, $upload['data'][0]);
-                Product::AddProductColors($productId, $productColors);
-                $success = 'Produkt er nu blevet tilføjet';
-                unset($POST);
+            if(!empty($_FILES['productImage']['name'])){
+                $upload = MediaUpload::UploadImage('productImage', ['116x80']);
+                //var_dump($upload);
+                if($upload['err'] == false)
+                {
+                    //Category::New($categoryType, $categoryName, $upload['data'][0]);
+                    Product::Edit(Router::GetParam(':ID'), $categoryType, $brand, $productModel, $productPrice, $productDesc, $upload['data'][0]);
+                    Product::EditProductColors(Router::GetParam(':ID'), $productColors);
+                    $success = 'Produkt er nu blevet rettet';
+                    unset($POST);
+                }else{
+                    $addError = 'Der skete den fejl! ' . $upload['data'];
+                }
             }else{
-                $addError = 'Der skete den fejl! ' . $upload['data'];
+                Product::Edit(Router::GetParam(':ID'), $categoryType, $brand, $productModel, $productPrice, $productDesc);
+                Product::EditProductColors(Router::GetParam(':ID'), $productColors);
+                $success = 'Produkt er nu blevet rettet';
+                unset($POST);
             }
         }else{
             $addError = 'Der skete en fejl.';
@@ -105,7 +111,7 @@
             ?>
                 <span>
                     <label for="color<?=$color->colorId?>">
-                        <img src="data:<?=$color->colorMime?>;base64,<?=base64_encode($color->colorSrc)?>">
+                        <img src="data:<?=$color->colorMime?>;base64,<?=base64_encode($color->colorSrc)?>" alt="<?=$color->colorName?>">
                     </label>
                     <input type="checkbox" name="colors[]" id="color<?=$color->colorId?>" value="<?=$color->colorId?>" <?= in_array($color->colorId, $productColors) ? ' checked' : ''?> >
                 </span>

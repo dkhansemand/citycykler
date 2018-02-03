@@ -39,10 +39,46 @@ class Product extends Database
         }
     }
 
-    public static function GetLastInsertedProduct()
+    public static function Edit($productId, $category, $brand, $model, $price, $productDesc, $productImage = false)
     {
         try
         {
+            if(!$productImage){
+               return (new self)->query("UPDATE products SET productDesc = :PDESC, 
+                                                             productPrice = :PRICE, 
+                                                             productCategory = :PCAT,
+                                                             productModel = :PMODEL,
+                                                             productBrand = :PBRAND
+                                                         WHERE productId = :ID
+                                                                ",
+                                        [
+                                            ':ID' => $productId,
+                                            ':PDESC' => $productDesc,
+                                            ':PRICE' => $price,
+                                            ':PCAT' => $category,
+                                            ':PMODEL' => $model,
+                                            ':PBRAND' => $brand
+                                        ]);
+
+            }else{
+                return (new self)->query("UPDATE products SET productDesc = :PDESC, 
+                                                                productPrice = :PRICE, 
+                                                                productCategory = :PCAT,
+                                                                productImage = :PIMG,
+                                                                productModel = :PMODEL,
+                                                                productBrand = :PBRAND
+                                                            WHERE productId = :ID
+                                                                ",
+                                                [
+                                                ':ID' => $productId,
+                                                ':PDESC' => $productDesc,
+                                                ':PRICE' => $price,
+                                                ':PCAT' => $category,
+                                                ':PIMG' => $productImage,
+                                                ':PMODEL' => $model,
+                                                ':PBRAND' => $brand
+                                                ]);
+            }
             
         }catch(Exception $err)
         {
@@ -55,6 +91,25 @@ class Product extends Database
         try
         {
             if(sizeof($colors) > 0){
+                foreach($colors as $color){
+                    (new self)->query("INSERT INTO productColors (fkProductId, fkColorId)VALUES(:PID, :CID)",[':PID' => $productId, ':CID' => $color]);
+                }
+                return true;
+            }else{
+                return false;
+            }
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
+        }
+    }
+
+    public static function EditProductColors($productId, array $colors)
+    {
+        try
+        {
+            if(sizeof($colors) > 0){
+                (new self)->query("DELETE FROM productColors WHERE fkProductId = :ID", [':ID' => $productId]);
                 foreach($colors as $color){
                     (new self)->query("INSERT INTO productColors (fkProductId, fkColorId)VALUES(:PID, :CID)",[':PID' => $productId, ':CID' => $color]);
                 }
