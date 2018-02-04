@@ -6,7 +6,7 @@ class Brands extends Database
     {
         try
         {
-            return (new self)->query("SELECT brandId, brandName FROM brands")->fetchAll();
+            return (new self)->query("SELECT brandId, brandName FROM brands ORDER BY brandName ASC")->fetchAll();
         }catch(Exception $err)
         {
             throw new Exception("Fejl! [Brands-class.php]: " . $err->getMessage());

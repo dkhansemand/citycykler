@@ -248,4 +248,15 @@ class Product extends Database
             throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
         }
     }
+
+    public static function GetProductModels($brandName)
+    {
+        try
+        {
+            return (new self)->query("SELECT productId, productModel FROM brands INNER JOIN products ON productBrand = brandId WHERE brandName = LOWER(:BRAND) ORDER BY productModel ASC", [':BRAND' => $brandName])->fetchAll();
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
+        }
+    }
 }

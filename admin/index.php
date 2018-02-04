@@ -22,6 +22,11 @@
     Router::AddEndpoint('/ProductEdit/:ID/:CATEGORYTYPE','products/editProduct.php', ['guard' => new Guard(), 'title' => 'Ret produkt']);
     Router::AddEndpoint('/ProductDelete/:ID','products/deleteProduct.php', ['guard' => new Guard(), 'title' => 'Slet produkt']);
     Router::AddEndpoint('/ProductColorSecret', 'products/colors.php', ['guard' => new Guard(), 'title' => 'Opret farve']);
+    Router::AddEndpoint('/Offers', 'offer/offersList.php', ['guard' => new Guard(), 'title' => 'Tilbuds liste']);
+    Router::AddEndpoint('/OfferAdd/:OBRAND', 'offer/newOffer.php', ['guard' => new Guard(), 'title' => 'Nyt tilbud']);
+    Router::AddEndpoint('/OfferEdit/:OID', 'offer/editOffer.php', ['guard' => new Guard(), 'title' => 'Ret tilbud']);
+    Router::AddEndpoint('/OfferDelete/:OID', 'offer/deleteOffer.php', ['guard' => new Guard(), 'title' => 'Slet tilbud']);
+
     Router::Init($_SERVER['REQUEST_URI']);
    
 ?>
