@@ -277,3 +277,43 @@ footer{
 .pages .currentPage{
     text-decoration: none;
 }
+#productView{
+    padding-left: 15px;
+    padding-top: 10px;
+}
+#productView article{
+    display: grid;
+    grid-template-areas: 
+        ". productTitle"
+        "productImage productDesc"
+        "productColors productPrice";
+    grid-template-columns: 170px auto;
+    grid-column-gap: 15px;
+}
+
+#productView article .product-title{
+    grid-area: productTitle;
+    margin-bottom: 15px;
+}
+#productView article img{
+    grid-area: productImage;
+}
+#productView article .product-desc{
+    grid-area: productDesc;
+    margin: 15px 0;
+}
+#productView article .product-price{
+    grid-area: productPrice;
+    margin-top: 20px;
+}
+#productView article .product-colors{
+    grid-area: productColors;
+}
+#productView article .product-colors h3{
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+#productView article .product-colors img{
+    margin-right: 5px;
+}

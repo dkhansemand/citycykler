@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="product-img">
-            <img src="<?=Router::$BASE?>assets/media/<?=$product->filename?>" width="116" height="80" alt="">
+            <img src="<?=Router::$BASE?>assets/media/<?=$product->filename?>" width="116" height="80" alt="<?=$product->brandName . ' ' . $product->productModel?>">
         </div>
     </article>
     <?php

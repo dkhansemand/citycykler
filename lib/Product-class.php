@@ -158,7 +158,9 @@ class Product extends Database
     {
         try
         {
-            return (new self)->query("SELECT fkProductId, fkColorId FROM productColors WHERE fkProductId = :ID", [':ID' => $productId])->fetchAll();
+            return (new self)->query("SELECT fkProductId, fkColorId, colorId, colorName, colorSrc, colorMime FROM productColors 
+                                        INNER JOIN colors ON colorId = fkColorId
+                                        WHERE fkProductId = :ID", [':ID' => $productId])->fetchAll();
         }catch(Exception $err)
         {
             throw new Exception("Fejl! [Product-class.php]: " . $err->getMessages());
