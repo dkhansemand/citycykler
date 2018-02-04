@@ -116,10 +116,10 @@ class Router
                if(isset($routeArr[$id]) && ($endpoint ===  $routeArr[$id]))
                {
                     self::$currentRoute .= $endpoint;
+                    $match = true;
+                    self::$view = $endRoute[1];
                     if(count($endPointArr) === count($routeArr))
                     {
-                        self::$view = $endRoute[1];
-                        $match = true;
                         if(array_key_exists('guard', $endRoute))
                         {
                             $endRoute['guard']->Protect();

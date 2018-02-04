@@ -9,7 +9,7 @@
 
     Router::AddEndpoint('/Forsiden','home.php', ['title' => 'Forsiden']);
     Router::AddEndpoint('/Kategori/:CATEGORY','categories.php', ['title' => 'Kategorier']);
-    Router::AddEndpoint('/Produkter/:CATEGORY/:CATEGORYNAME','products.php', ['title' => 'Produkter']);
+    Router::AddEndpoint('/Produkter/:CATEGORY/:CATEGORYNAME/:PAGE','products.php', ['title' => 'Produkter']);
 
 
     Router::Init($_SERVER['REQUEST_URI']);
