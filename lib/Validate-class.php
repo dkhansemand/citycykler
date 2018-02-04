@@ -56,7 +56,7 @@ class Validate{
             isset($str) &&
             strlen((string)$str) >= (int)$min && 
             strlen((string)$str) <= (int)$max && 
-            preg_match("/[a-zæøåäüö\s0-9,.]+$/i", $str)
+            preg_match("/[A-ZÆØÅÂÔÛa-zæøåäüö\s0-9,.]+$/i", $str)
         ) ? true : false;
     }
 
