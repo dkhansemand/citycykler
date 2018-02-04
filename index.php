@@ -11,6 +11,7 @@
     Router::AddEndpoint('/Kategori/:CATEGORY','categories.php', ['title' => 'Kategorier']);
     Router::AddEndpoint('/Produkter/:CATEGORY/:CATEGORYNAME/:PAGE','products.php', ['title' => 'Produkter']);
     Router::AddEndpoint('/Produkt/:CATEGORY/:CATEGORYNAME/:ID', 'productView.php', ['title' => 'Vis produkt']);
+    Router::AddEndpoint('/Soegning/:QPAGE', 'search.php', ['title' => 'Advanceret søgning']);
 
     Router::Init($_SERVER['REQUEST_URI']);
 
@@ -34,10 +35,10 @@
                         <h2>cykler i alle prisklasser</h2>
                     </div>
                     <div>
-                        <form action="#search" method="post" id="headerSearch">
+                        <form action="<?=Router::Link('/Soegning')?>" method="post" id="headerSearch">
                             <input type="text" name="searchVal" id="searchVal"><br>
                             <button>Søg</button>
-                            <a href="#">Advanceret søg</a>
+                            <a href="<?=Router::Link('/Soegning')?>">Advanceret søg</a>
                         </form>
                     </div>
                 </header>
