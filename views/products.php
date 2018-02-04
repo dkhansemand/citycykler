@@ -3,19 +3,25 @@
     <?php //var_dump(Product::GetProductsByCategory(Router::GetParam(':CATEGORYNAME'))) ?>
 </pre> -->
 <section id="products">
+    <?php
+    foreach(Product::GetProductsByCategory(Router::GetParam(':CATEGORYNAME')) as $product){
+    ?>
     <article>
         <div class="product-item">
-            <h3>mærke model</h3>
-            <p>productDesc</p>
+            <h3><?=$product->brandName . ' ' . $product->productModel?></h3>
+            <p><?= (strlen($product->productDesc) > 185) ? substr($product->productDesc, 0, 181) . ' ...' : $product->productDesc ?></p>
             <div class="product-info">
-                <p>Pris: xxx kr.</p>
+                <p>Pris: <?=round($product->productPrice)?> kr.</p>
                 <a href="#">Mere info</a>
             </div>
         </div>
         <div class="product-img">
-            <img src="<?=Router::$BASE?>assets/media/homePicture.png" width="116" height="80" alt="">
+            <img src="<?=Router::$BASE?>assets/media/<?=$product->filename?>" width="116" height="80" alt="">
         </div>
     </article>
+    <?php
+    }
+    ?>
     <div class="pages">
         <p>Side</p>
         <a href="#" class="currentPage">1</a>
