@@ -172,8 +172,18 @@ class Router
         self::Redirect(self::$defaultRoute);
     }
 
-    public static function IsActive(string $route) : string
+    public static function IsActive(array $routes) : string
     {
-        return (self::$route === $route) ? ' active ' : '';
+        $activeClass = '';
+        foreach($routes as $route)
+        {
+            if(self::$route === $route){
+                $activeClass = ' active ';
+            }elseif(strpos(self::$route, $route) !== false)
+            {
+                $activeClass = ' active ';
+            }
+        }
+        return $activeClass;
     }
 }

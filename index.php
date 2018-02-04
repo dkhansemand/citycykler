@@ -9,7 +9,7 @@
 
     Router::AddEndpoint('/Forsiden','home.php', ['title' => 'Forsiden']);
     Router::AddEndpoint('/Kategori/:CATEGORY','categories.php', ['title' => 'Kategorier']);
-    Router::AddEndpoint('/Produkter/:CATEGORY','products.php', ['title' => 'Produkter']);
+    Router::AddEndpoint('/Produkter/:CATEGORY/:CATEGORYNAME','products.php', ['title' => 'Produkter']);
 
 
     Router::Init($_SERVER['REQUEST_URI']);
@@ -46,9 +46,9 @@
     <section id="mainContainer">
         <header>
             <nav>
-                <a href="<?=Router::Link('/Forsiden')?>" class="<?=Router::IsActive('/Forsiden')?>">Forsiden</a>
-                <a href="<?=Router::Link('/Kategori/Cykler')?>" class="<?=Router::IsActive('/Kategori/Cykler')?>">Cykler</a>
-                <a href="<?=Router::Link('/Kategori/Udstyr')?>" class="<?=Router::IsActive('/Kategori/Udstyr')?>">Udstyr</a>
+                <a href="<?=Router::Link('/Forsiden')?>" class="<?=Router::IsActive(['/Forsiden'])?>">Forsiden</a>
+                <a href="<?=Router::Link('/Kategori/Cykler')?>" class="<?=Router::IsActive(['/Kategori/Cykler', '/Produkter/Cykler/'])?>">Cykler</a>
+                <a href="<?=Router::Link('/Kategori/Udstyr')?>" class="<?=Router::IsActive(['/Kategori/Udstyr', '/Produkter/Udstyr/'])?>">Udstyr</a>
                 <a href="#">Kontakt</a>
                 <a href="#">Nyheder</a>
             </nav>
