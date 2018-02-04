@@ -63,7 +63,9 @@
                 <h3>Tilbud</h3>
                 <div class="offers-list">
                     <?php
-                        foreach(Offer::GetOffersLimit() as $offer)
+                    $offerList = Offer::GetOffersLimit();
+                    if(sizeof($offerList) > 0){
+                        foreach($offerList as $offer)
                         {
                     ?>
                         <div class="product-item">
@@ -74,6 +76,9 @@
                         </div>
                     <?php
                         }
+                    }else{
+                        echo '<p>Vi har desværre ingen varer på tilbud i øjeblikket.</p>';
+                    }
                     ?>
                 </div>
             </section>

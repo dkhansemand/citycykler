@@ -24,11 +24,11 @@ class Offer extends Database
         }
     }
 
-    public static function Delete($offertId)
+    public static function Delete($offerId)
     {
         try
         {
-            return (new self)->query("DELETE FROM offers WHERE offerId = :ID", [':ID' => $offertId]);
+            return (new self)->query("DELETE FROM offers WHERE offerId = :ID", [':ID' => $offerId]);
         }catch(Exception $err)
         {
             throw new Exception("Fejl! [Offer-class.php]: " . $err->getMessage());
@@ -69,7 +69,7 @@ class Offer extends Database
     {
         try
         {
-            return (new self)->query("SELECT productId, productModel, productPrice, brandName, offerPrice FROM offers
+            return (new self)->query("SELECT offerId, productId, productModel, productPrice, brandName, offerPrice FROM offers
                                         INNER JOIN products ON fkProductId = productId
                                         INNER JOIN brands ON productBrand = brandId
                                         WHERE offerId = :ID", [':ID' => $offerId])->fetch();
