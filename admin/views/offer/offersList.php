@@ -17,23 +17,25 @@
             </thead>
             <tbody>
             <?php
-                //foreach(Brands::GetBrands() as $brand){
+                foreach(Offer::GetOffersList() as $offer){
             ?>
                 <tr>
-                    <td class="mdl-data-table__cell--non-numeric"></td>
-                    <td class="mdl-data-table__cell--non-numeric"></td>
-                    <td class="mdl-data-table__cell--non-numeric"></td>
-                    <td></td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <a href="<?=Router::Link('/OfferEdit/')?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                        <img src="../assets/media/<?=$offer->filename?>" alt="<?=$offer->productModel?>">
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric"><?=$offer->brandName?></td>
+                    <td class="mdl-data-table__cell--non-numeric"><?=$offer->productModel?></td>
+                    <td><?=$offer->offerPrice?></td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <a href="<?=Router::Link('/OfferEdit/'. $offer->offerId . '/' . ucfirst($offer->brandName))?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
                             <i class="material-icons">edit</i>
                         </a>
-                        <a href="<?=Router::Link('/OfferDelete/')?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
+                        <a href="<?=Router::Link('/OfferDelete/'. $offer->offerId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
                             <i class="material-icons">delete</i>
                         </a>
                     </td>
                 </tr>
-            <?php //} ?>
+            <?php } ?>
             </tbody>
         </table>
 
