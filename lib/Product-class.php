@@ -197,4 +197,54 @@ class Product extends Database
             throw new Exception("Fejl! [Product-class.php]: " . $err->getMessages());
         }
     }
+
+    public static function Search(string $query = '', $category = null, $brand = null, $maxPrice = null)
+    {
+        try
+        {
+            $params = [];
+            $sql = "SELECT productId, productCategory, productBrand, brandName, categoryName, `filename`, productDesc, productModel, productPrice FROM category
+                            INNER JOIN products ON productCategory = categoryId
+                            INNER JOIN brands ON productBrand = brandId
+                            INNER JOIN media ON productImage = mediaId
+                            WHERE ";
+            if(!empty($query)){
+                $sql .= " productModel LIKE CONCAT('%', :SQ, '%') ";
+                $params[':SQ'] = $query;
+            }
+            if((sizeof($params) === 0) && !is_null($category) && is_numeric($category)){
+                $sql .= " productCategory = :PCAT ";
+                $params[':PCAT'] = $category;
+            }elseif(!is_null($category) && is_numeric($category)){
+                $sql .= " OR productCategory = :PCAT ";
+                $params[':PCAT'] = $category;
+            }
+
+            if((sizeof($params) === 0) && !is_null($brand) && is_numeric($brand)){
+                $sql .= " productBrand = :PBRAND ";
+                $params[':PBRAND'] = $brand;
+            }elseif(!is_null($brand) && is_numeric($brand)){
+                $sql .= " OR productBrand = :PBRAND ";
+                $params[':PCAT'] = $category;
+            }
+
+            if((sizeof($params) === 0) && !is_null($maxPrice) && is_numeric($maxPrice)){
+                $sql .= " productPrice <= :PRICEMAX ";
+                $params[':PRICEMAX'] = $maxPrice;
+            }elseif(!is_null($maxPrice) && is_numeric($maxPrice)){
+                $sql .= " AND productPrice <= :PRICEMAX ";
+                $params[':PRICEMAX'] = $maxPrice;
+            }
+
+            if(sizeof($params) > 0){
+                return (new self)->query($sql, $params)->fetchAll();
+            }else{
+                return [];
+            }
+            
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
+        }
+    }
 }

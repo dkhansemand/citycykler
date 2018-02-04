@@ -1,19 +1,27 @@
 <?php
     if(isset($POST['btnSearch'])){
-        $error = [];
-        $category = (isset($POST['category']) && $POST['category'] != 0) ? $POST['category'] : $error['category'] = 'Der skal vælges en kategori.';
-        $brand = (isset($POST['brand']) && $POST['brand'] != 0) ? $POST['brand'] : $error['brand'] = 'Der skal vælges et mærke';
-       
+        $category = (isset($POST['category']) && $POST['category'] != 0) ? $POST['category'] : null;
+        $brand = (isset($POST['brand']) && $POST['brand'] != 0) ? $POST['brand'] : null;
+        $maxPrice = (isset($POST['maxPrice']) && is_numeric($POST['maxPrice'])) ? $POST['maxPrice'] : null;
+        $query = filter_var($POST['query'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
+        $searchResult = Product::Search($query, $category, $brand, $maxPrice);
+        $_SESSION['searchResult'] = $searchResult;
+    }elseif(isset($POST['searchVal']))
+    {
+        $searchResult = Product::Search($POST['searchVal']);
+        $_SESSION['searchResult'] = $searchResult;
+    }elseif(isset($_SESSION['searchResult']) && sizeof($_SESSION['searchResult']) > 0){
+        $searchResult = $_SESSION['searchResult'];
     }
 ?>
 <h3 class="view-title">Advanceret søgning</h3>
 <section id="searchForm">
-    <form action="" method="post">
+    <form action="<?=Router::Link('/Soegning')?>" method="post">
             <div class="input-col">
                 <div class="input-field">
                     <label for="category">Kategori</label>
                     <select name="category" id="category" required>
-                        <option value="0" <?= isset($POST['category']) ? '' : 'selected'?> disabled>-- Vælg --</option>
+                        <option value="0" <?= isset($POST['category']) ? '' : 'selected'?> >-- Vælg --</option>
                         <?php
                             foreach(Category::GetCategories() as $Category)
                             {
@@ -28,7 +36,7 @@
                 <div class="input-field">
                     <label for="brand">Mærke</label>
                     <select name="brand" id="brand" required>
-                        <option value="0" <?= isset($POST['brand']) ? '' : 'selected'?> disabled>-- Vælg --</option>
+                        <option value="0" <?= isset($POST['brand']) ? '' : 'selected'?> >-- Vælg --</option>
                         <?php
                             foreach(Brands::GetBrands() as $brand)
                             {
@@ -45,6 +53,7 @@
                 <div class="input-field">
                     <label for="maxPrice">Max pris</label>
                     <input type="number" name="maxPrice" id="maxPrixe" value="<?=@$POST['maxPrice']?>">
+                    <?= !empty($POST['maxPrice']) && !is_numeric($POST['maxPrice']) ? '<p class="error">Pris må kun indholde tal.</p>' : ''?>
                 </div>
                 <div class="input-field">
                     <label for="query">Søgeord</label>
@@ -60,10 +69,16 @@
         
     </form>
 </section>
+<?php
+if(isset($searchResult)){
+?>
+
 <section id="products">
 <?php
+if(sizeof($searchResult) > 0){
+
  $currentPage = !empty(Router::GetParam(':QPAGE')) ? Router::GetParam(':QPAGE') : 1;
-Pagination::Init(Product::GetProductsByCategory('Damecykler'));
+Pagination::Init($searchResult);
 Pagination::$limit = 2;
 foreach(Pagination::Items($currentPage) as $product){
 ?>
@@ -93,3 +108,14 @@ foreach(Pagination::Items($currentPage) as $product){
     <?php } ?>
 </div>
 </section>
+<?php
+}else{
+    ?>
+    <p>Der er desværre ikke nogen emner,
+der matcher dine søgekriterier. Vi
+anbefaler, at du udvider din søgning
+og prøver igen.</p>
+    <?php
+}
+}
+?>
