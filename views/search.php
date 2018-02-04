@@ -1,3 +1,11 @@
+<?php
+    if(isset($POST['btnSearch'])){
+        $error = [];
+        $category = (isset($POST['category']) && $POST['category'] != 0) ? $POST['category'] : $error['category'] = 'Der skal vælges en kategori.';
+        $brand = (isset($POST['brand']) && $POST['brand'] != 0) ? $POST['brand'] : $error['brand'] = 'Der skal vælges et mærke';
+       
+    }
+?>
 <h3 class="view-title">Advanceret søgning</h3>
 <section id="searchForm">
     <form action="" method="post">
@@ -46,7 +54,7 @@
             <div class="input-col">
                 <div class="input-field"></div>
                 <div class="input-field">
-                    <button>Søg</button>
+                    <button name="btnSearch">Søg</button>
                 </div>
             </div>
         
