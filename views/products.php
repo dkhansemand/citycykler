@@ -1,10 +1,14 @@
+<?php
+    $currentPage = !empty(Router::GetParam(':PAGE')) ? Router::GetParam(':PAGE') : 1;
+?>
 <h3 class="view-title"><?=ucfirst(Router::GetParam(':CATEGORYNAME'))?></h3>
 <!-- <pre>
     <?php //var_dump(Product::GetProductsByCategory(Router::GetParam(':CATEGORYNAME'))) ?>
 </pre> -->
 <section id="products">
     <?php
-    foreach(Product::GetProductsByCategory(Router::GetParam(':CATEGORYNAME')) as $product){
+    Pagination::Init(Product::GetProductsByCategory(Router::GetParam(':CATEGORYNAME')));
+    foreach(Pagination::Items($currentPage) as $product){
     ?>
     <article>
         <div class="product-item">
@@ -23,9 +27,12 @@
     }
     ?>
     <div class="pages">
+        <?php //var_dump(Pagination::Pages()) ?>
         <p>Side</p>
-        <a href="#" class="currentPage">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
+        <?php
+            for($page = 1; $page <= Pagination::Pages(); $page++){
+        ?>
+            <a href="<?=Router::Link('/Produkter/'.Router::GetParam(':CATEGORY').'/'.Router::GetParam(':CATEGORYNAME').'/'.$page)?>" class="<?= ($page == $currentPage) ? 'currentPage' : ''?>"><?=$page?></a>
+        <?php } ?>
     </div>
 </section>
