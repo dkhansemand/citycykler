@@ -15,7 +15,7 @@
             <h3><?=$product->brandName . ' ' . $product->productModel?></h3>
             <p><?= (strlen($product->productDesc) > 185) ? substr($product->productDesc, 0, 181) . ' ...' : $product->productDesc ?></p>
             <div class="product-info">
-                <p>Pris: <?=round($product->productPrice)?> kr.</p>
+                <p>Pris: <?=number_format($product->productPrice, 0, '.', '.')?> kr.</p>
                 <a href="<?=Router::Link('/Produkt/'.Router::GetParam(':CATEGORY').'/'.Router::GetParam(':CATEGORYNAME').'/'.$product->productId)?>">Mere info</a>
             </div>
         </div>

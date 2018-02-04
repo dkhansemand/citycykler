@@ -8,7 +8,7 @@
         <h3 class="product-title"><?=$product->brandName . ' ' . $product->productModel?></h3>
         <img src="<?=Router::$BASE?>assets/media/<?=$product->filename?>" width="168" height="116" alt="<?=$product->brandName . ' ' . $product->productModel?>">
         <p class="product-desc"><?=$product->productDesc?></p>
-        <p class="product-price">Pris: <?=$product->productPrice?> Kr.</p>
+        <p class="product-price">Pris: <?=number_format($product->productPrice, 0, '.', '.')?> Kr.</p>
         <div class="product-colors">
             <h3>Farver</h3>
         <?php
