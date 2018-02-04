@@ -15,7 +15,7 @@
             $productColors = isset($POST['colors']) && (sizeof($POST['colors']) > 0) ? $POST['colors'] : $error['colors'] = 'Der skal min vælges en farve.';
         }
         if(sizeof($error) === 0){
-            $upload = MediaUpload::UploadImage($productImage, ['168x116']);
+            $upload = MediaUpload::UploadImage($productImage, ['168x116', '116x80'. '69x48']);
             //var_dump($upload);
             if($upload['err'] == false)
             {

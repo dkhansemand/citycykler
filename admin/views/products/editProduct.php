@@ -15,7 +15,7 @@
         }
         if(sizeof($error) === 0){
             if(!empty($_FILES['productImage']['name'])){
-                $upload = MediaUpload::UploadImage('productImage', ['168x116']);
+                $upload = MediaUpload::UploadImage('productImage', ['168x116', '116x80'. '69x48']);
                 //var_dump($upload);
                 if($upload['err'] == false)
                 {
