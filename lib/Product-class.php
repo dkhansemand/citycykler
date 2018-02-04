@@ -203,8 +203,9 @@ class Product extends Database
         try
         {
             $params = [];
-            $sql = "SELECT productId, productCategory, productBrand, brandName, categoryName, `filename`, productDesc, productModel, productPrice FROM category
-                            INNER JOIN products ON productCategory = categoryId
+            $sql = "SELECT productId, productCategory, productBrand, brandName, categoryName, categoryTypeName, `filename`, productDesc, productModel, productPrice FROM products
+                            INNER JOIN category ON productCategory = categoryId
+                            INNER JOIN categorytypes ON categoryTypeId = categoryType
                             INNER JOIN brands ON productBrand = brandId
                             INNER JOIN media ON productImage = mediaId
                             WHERE ";

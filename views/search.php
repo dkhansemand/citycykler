@@ -88,7 +88,7 @@ foreach(Pagination::Items($currentPage) as $product){
         <p><?= (strlen($product->productDesc) > 185) ? substr($product->productDesc, 0, 181) . ' ...' : $product->productDesc ?></p>
         <div class="product-info">
             <p>Pris: <?=round($product->productPrice)?> kr.</p>
-            <a href="<?=Router::Link('/Produkt/'.$product->productId)?>">Mere info</a>
+            <a href="<?=Router::Link('/Produkt/'.ucfirst($product->categoryTypeName).'/'.$product->categoryName.'/'.$product->productId)?>">Mere info</a>
         </div>
     </div>
     <div class="product-img">
