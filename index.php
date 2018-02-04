@@ -62,24 +62,19 @@
             <section id="offersPanel">
                 <h3>Tilbud</h3>
                 <div class="offers-list">
-                    <div class="product-item">
-                        <h4>Mærke model</h4>
-                        <img src="<?=Router::$BASE?>assets/media/homePicture.png" alt="" height="48" width="69">
-                        <p class="price-before">Før: <span class="line"><?=number_format(9999, 0, '.', '.')?></span> kr.</p>
-                        <p class="price-after">Nu kun 999 kr.</p>
-                    </div>
-                    <div class="product-item">
-                        <h4>Mærke model</h4>
-                        <img src="<?=Router::$BASE?>assets/media/homePicture.png" alt="" height="48" width="69">
-                        <p class="price-before">Før: <span class="line">9999</span> kr.</p>
-                        <p class="price-after">Nu kun 999 kr.</p>
-                    </div>
-                    <div class="product-item">
-                        <h4>Mærke model</h4>
-                        <img src="<?=Router::$BASE?>assets/media/homePicture.png" alt="" height="48" width="69">
-                        <p class="price-before">Før: <span class="line">9999</span> kr.</p>
-                        <p class="price-after">Nu kun 999 kr.</p>
-                    </div>
+                    <?php
+                        foreach(Offer::GetOffersLimit() as $offer)
+                        {
+                    ?>
+                        <div class="product-item">
+                            <h4><?=$offer->brandName . ' ' . $offer->productModel?></h4>
+                            <img src="<?=Router::$BASE?>assets/media/<?=$offer->filename?>" alt="<?=$offer->brandName . ' ' . $offer->productModel?>" height="48" width="69">
+                            <p class="price-before">Før: <span class="line"><?=number_format($offer->productPrice, 0, '.', '.')?></span> kr.</p>
+                            <p class="price-after">Nu kun <?=number_format($offer->offerPrice, 0, '.', '.')?> kr.</p>
+                        </div>
+                    <?php
+                        }
+                    ?>
                 </div>
             </section>
         </section>
