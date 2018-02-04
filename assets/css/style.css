@@ -100,7 +100,7 @@ h5{
         "nav"
         "main"
         "footer";
-    grid-template-rows: 40px minmax(20vh, 60vh) 30px;
+    grid-template-rows: 40px minmax(40vh, auto) 30px;
     margin: 0 auto;
     width: 960px;
 }
@@ -178,6 +178,33 @@ h5{
     margin-bottom: 5px;
    
     padding-bottom: 4px;
+}
+
+#mainContent #offersPanel .offers-list{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 10px;
+}
+
+#mainContent #offersPanel .offers-list .product-item{
+    border: 2px solid #EDEDED;
+    text-align: center;
+}
+
+#mainContent #offersPanel .offers-list .product-item h4{
+    color: #000;
+    font-weight: 500;
+}
+
+#mainContent #offersPanel .offers-list .product-item .price-before .line{
+    font-size: 1.2em;
+    text-decoration: line-through;
+}
+
+#mainContent #offersPanel .offers-list .product-item .price-after{
+    font-size: 1.3em;
+    color: red;
 }
 
 footer{

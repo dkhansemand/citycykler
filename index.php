@@ -61,6 +61,26 @@
             <span id="split"></span>
             <section id="offersPanel">
                 <h3>Tilbud</h3>
+                <div class="offers-list">
+                    <div class="product-item">
+                        <h4>Mærke model</h4>
+                        <img src="<?=Router::$BASE?>assets/media/homePicture.png" alt="" height="48" width="69">
+                        <p class="price-before">Før: <span class="line"><?=number_format(9999, 0, '.', '.')?></span> kr.</p>
+                        <p class="price-after">Nu kun 999 kr.</p>
+                    </div>
+                    <div class="product-item">
+                        <h4>Mærke model</h4>
+                        <img src="<?=Router::$BASE?>assets/media/homePicture.png" alt="" height="48" width="69">
+                        <p class="price-before">Før: <span class="line">9999</span> kr.</p>
+                        <p class="price-after">Nu kun 999 kr.</p>
+                    </div>
+                    <div class="product-item">
+                        <h4>Mærke model</h4>
+                        <img src="<?=Router::$BASE?>assets/media/homePicture.png" alt="" height="48" width="69">
+                        <p class="price-before">Før: <span class="line">9999</span> kr.</p>
+                        <p class="price-after">Nu kun 999 kr.</p>
+                    </div>
+                </div>
             </section>
         </section>
         <footer>
