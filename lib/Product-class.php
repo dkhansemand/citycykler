@@ -180,4 +180,19 @@ class Product extends Database
             throw new Exception("Fejl! [Product-class.php]: " . $err->getMessages());
         }
     }
+
+    public static function GetProductsByCategory($categoryName)
+    {
+        try
+        {
+            return (new self)->query("SELECT productId, productCategory, productBrand, brandName, categoryName, `filename`, productDesc, productModel, productPrice FROM category
+                                        INNER JOIN products ON productCategory = categoryId
+                                        INNER JOIN brands ON productBrand = brandId
+                                        INNER JOIN media ON productImage = mediaId
+                                        WHERE categoryName = LOWER(:CNAME)", [':CNAME' => $categoryName])->fetchAll();
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessages());
+        }
+    }
 }

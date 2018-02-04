@@ -160,7 +160,7 @@ h5{
     padding: 5px ;
 }
 
-#mainContent #content h3{
+#mainContent #content .view-title{
     border-bottom: 2px solid #EDEDED;
     margin-bottom: 5px;
    
@@ -218,5 +218,61 @@ footer{
 }
 #categories #category-item a {
     color: inherit;
+    text-decoration: none;
+}
+
+#products
+{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 10px 5px;
+}
+
+#products article{
+    border: 2px solid #EDEDED;
+    display: grid;
+    grid-template-columns: auto 120px;
+    grid-column-gap: 180px;
+    padding: 5px 10px;
+}
+
+#products article .product-item p{
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+#products article .product-item h3{
+    border-bottom: 0;
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+#products .product-info{
+    display: flex;
+    justify-content: space-between;
+}
+#products  article .product-item .product-info p{
+    margin-bottom: 0;
+}
+#products .product-info a {
+    color: #ff9e41;
+    font-size: 1.2em;
+}
+
+#products .pages{
+    color: #ff9e41;
+    display: flex;
+    font-size: 1.2em;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.pages a {
+    color: #ff9e41;
+    margin: 0 2px;
+}
+
+.pages .currentPage{
     text-decoration: none;
 }

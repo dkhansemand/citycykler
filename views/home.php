@@ -1,7 +1,7 @@
 <?php
     $pageData = PageContent::GetContentByName('Forsiden');
 ?>
-<h3><?=Router::ViewTitle()?></h3>
+<h3 class="view-title"><?=Router::ViewTitle()?></h3>
 <section id="home">
     <article>
         <?php

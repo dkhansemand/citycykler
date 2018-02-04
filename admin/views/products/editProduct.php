@@ -7,7 +7,7 @@
         $error = [];
         $categoryType = (isset($POST['categoryType']) && $POST['categoryType'] != 0) ? $POST['categoryType'] : $error['categoryType'] = 'Der skal vælges en hovedkategori.';
         $brand = (isset($POST['brand']) && $POST['brand'] != 0) ? $POST['brand'] : $error['brand'] = 'Der skal vælges en hovedkategori.';
-        $productModel = Validate::stringBetween($POST['productModel'], 2 , 15) ? $POST['productModel'] : $error['productModel'] = 'Produkt model skal udfyldes og være mellem 2 og 15 tegn. <br>Samt må det kun indholde bogstaver og tal.';
+        $productModel = Validate::stringBetween($POST['productModel'], 2 , 30) ? $POST['productModel'] : $error['productModel'] = 'Produkt model skal udfyldes og være mellem 2 og 30 tegn. <br>Samt må det kun indholde bogstaver og tal.';
         $productPrice = is_numeric($POST['productPrice']) ? $POST['productPrice'] : $error['productPrice'] = 'Produkt prisen er ikke angivet korrekt';
         $productDesc = Validate::stringBetween($POST['productDesc'], 2 , 999) ? $POST['productDesc'] : $error['productDesc'] = 'Produkt beskrivelse skal udfyldes og være mellem 2 og 999 tegn. <br>Samt må det kun indholde bogstaver og tal.';
         $productColors = isset($POST['colors']) && (sizeof($POST['colors']) > 0) ? $POST['colors'] : $error['colors'] = 'Der skal min vælges en farve.';
