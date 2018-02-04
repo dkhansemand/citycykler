@@ -1,5 +1,5 @@
 <pre>
-    <?php //var_dump($POST) ?>
+    <?php //var_dump(Router::GetParams()) ?>
 </pre>
 <?php
 
@@ -11,15 +11,19 @@
         $productPrice = is_numeric($POST['productPrice']) ? $POST['productPrice'] : $error['productPrice'] = 'Produkt prisen er ikke angivet korrekt';
         $productDesc = Validate::stringBetween($POST['productDesc'], 2 , 999) ? $POST['productDesc'] : $error['productDesc'] = 'Produkt beskrivelse skal udfyldes og være mellem 2 og 999 tegn. <br>Samt må det kun indholde bogstaver og tal.';
         $productImage = !empty($_FILES['productImage']['name']) ? 'productImage' : $error['productImage'] = 'Billede skal tilføjes.';
-        $productColors = isset($POST['colors']) && (sizeof($POST['colors']) > 0) ? $POST['colors'] : $error['colors'] = 'Der skal min vælges en farve.';
+        if(Router::GetParam(':CATEGORYTYPE') === 'Cykler'){
+            $productColors = isset($POST['colors']) && (sizeof($POST['colors']) > 0) ? $POST['colors'] : $error['colors'] = 'Der skal min vælges en farve.';
+        }
         if(sizeof($error) === 0){
-            $upload = MediaUpload::UploadImage($productImage, ['116x80']);
+            $upload = MediaUpload::UploadImage($productImage, ['168x116']);
             //var_dump($upload);
             if($upload['err'] == false)
             {
                 //Category::New($categoryType, $categoryName, $upload['data'][0]);
                 $productId = Product::New($categoryType, $brand, $productModel, $productPrice, $productDesc, $upload['data'][0]);
-                Product::AddProductColors($productId, $productColors);
+                if(isset($productColors) && !empty($productColors)){
+                    Product::AddProductColors($productId, $productColors);
+                }
                 $success = 'Produkt er nu blevet tilføjet';
                 unset($POST);
             }else{
@@ -91,6 +95,7 @@
         <div class="mdl-cell mdl-cell--8-col">
             <div id="colorsList"> 
             <?php
+            if(Router::GetParam(':CATEGORYTYPE') === 'Cykler'){
                 foreach(Product::GetColors() as $color){
             ?>
                 <span>
@@ -100,7 +105,7 @@
                     <input type="checkbox" name="colors[]" id="color<?=$color->colorId?>" value="<?=$color->colorId?>">
                 </span>
             <?php
-                }
+                }}
             ?>
             </div>
             <?= isset($error['colors']) ? '<p class="error">'.$error['colors'].'</p>' : ''?>

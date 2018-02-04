@@ -1,5 +1,5 @@
 <pre>
-    <?php //var_dump($POST) ?>
+    <?php //var_dump(Router::GetParams()) ?>
 </pre>
 <?php
 
@@ -10,16 +10,20 @@
         $productModel = Validate::stringBetween($POST['productModel'], 2 , 30) ? $POST['productModel'] : $error['productModel'] = 'Produkt model skal udfyldes og være mellem 2 og 30 tegn. <br>Samt må det kun indholde bogstaver og tal.';
         $productPrice = is_numeric($POST['productPrice']) ? $POST['productPrice'] : $error['productPrice'] = 'Produkt prisen er ikke angivet korrekt';
         $productDesc = Validate::stringBetween($POST['productDesc'], 2 , 999) ? $POST['productDesc'] : $error['productDesc'] = 'Produkt beskrivelse skal udfyldes og være mellem 2 og 999 tegn. <br>Samt må det kun indholde bogstaver og tal.';
-        $productColors = isset($POST['colors']) && (sizeof($POST['colors']) > 0) ? $POST['colors'] : $error['colors'] = 'Der skal min vælges en farve.';
+        if(Router::GetParam(':CATEGORYTYPE') == 'Cykler'){
+            $productColors = isset($POST['colors']) && (sizeof($POST['colors']) > 0) ? $POST['colors'] : $error['colors'] = 'Der skal min vælges en farve.';
+        }
         if(sizeof($error) === 0){
             if(!empty($_FILES['productImage']['name'])){
-                $upload = MediaUpload::UploadImage('productImage', ['116x80']);
+                $upload = MediaUpload::UploadImage('productImage', ['168x116']);
                 //var_dump($upload);
                 if($upload['err'] == false)
                 {
                     //Category::New($categoryType, $categoryName, $upload['data'][0]);
                     Product::Edit(Router::GetParam(':ID'), $categoryType, $brand, $productModel, $productPrice, $productDesc, $upload['data'][0]);
-                    Product::EditProductColors(Router::GetParam(':ID'), $productColors);
+                    if(isset($productColors) && !empty($productColors)){
+                        Product::EditProductColors(Router::GetParam(':ID'), $productColors);
+                    }
                     $success = 'Produkt er nu blevet rettet';
                     unset($POST);
                 }else{
@@ -50,7 +54,7 @@
                 <option value="0" disabled>Vælg kategori...</option>
                 <?php
                 $categorytype = @$POST['categoryType'] ?? $productData->productCategory;
-                    foreach(Category::GetCategories() as $Category)
+                    foreach(Category::GetCategoriesByType(Router::GetParam(':CATEGORYTYPE')) as $Category)
                     {
                 ?>
                         <option value="<?=$Category->categoryId?>" <?= ($categorytype == $Category->categoryId) ? 'selected' : ''?> ><?=$Category->categoryName?></option>
@@ -102,6 +106,7 @@
         <div class="mdl-cell mdl-cell--8-col">
             <div id="colorsList"> 
             <?php
+            if(Router::GetParam(':CATEGORYTYPE') === 'Cykler'){
             $productColors = [];
                 foreach(Product::GetColorsByProductId($productData->productId) as $productColor){
                     $productColors[] = $productColor->fkColorId;
@@ -117,7 +122,7 @@
                 </span>
             <?php
                 }
-               
+            }
             ?>
             </div>
             <?= isset($error['colors']) ? '<p class="error">'.$error['colors'].'</p>' : ''?>

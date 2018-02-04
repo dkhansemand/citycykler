@@ -20,7 +20,7 @@
         ?>
             <div class="mdl-tabs__panel <?= $idx == 0 ? 'is-active' : ''?>" id="<?=$categoryType->categoryTypeName?>">
                 <div class="mdl-cell mdl-cell--12-col">
-                    <a href="<?=Router::Link('/ProductAdd/' . ucfirst($categoryType->categoryTypeName));?>" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    <a href="<?=Router::Link('/ProductAdd/New/' . ucfirst($categoryType->categoryTypeName));?>" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                         <i class="material-icons">add</i>
                     </a>
                 </div>
@@ -51,7 +51,7 @@
                             <img src="../assets/media/<?=$product->filename?>" alt="<?=$product->productName?>">
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <a href="<?=Router::Link('/ProductEdit/'.$product->productId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                            <a href="<?=Router::Link('/ProductEdit/'.$product->productId . '/'.ucfirst($product->categoryTypeName))?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
                                 <i class="material-icons">edit</i>
                             </a>
                             <a href="<?=Router::Link('/ProductDelete/'.$product->productId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
