@@ -1,14 +1,14 @@
 <h3 class="view-title">Konakt</h3>
 <section id="contact">
     <div class="contact-info">
-        <h3>City Cykler A/S </h3>
-        <p>Nygade 65 </p>
-        <p>9000 Ålborg</p>
+        <h3><?=$siteInfo->siteTitle?></h3>
+        <p><?=$siteInfo->street?></p>
+        <p><?=$siteInfo->zipcode?> <?=$siteInfo->city?></p>
         <br>
-        <p>Telefon: (+45) 98 10 10 11</p>
-        <p>Fax: (+45) 98 10 10 12</p>
+        <p>Tlf.: (+45) <?=chunk_split($siteInfo->phone, 2)?></p>
+        <p>Fax: (+45) <?=chunk_split($siteInfo->fax, 2)?></p>
         <br>
-        <p>Mail: contact@cc.dk</p>
+        <p>Mail: <?=$siteInfo->email?></p>
     </div>
     <img src="<?=Router::$BASE?>assets/media/contactMap.jpg" alt="City cykler placering">
 </section>

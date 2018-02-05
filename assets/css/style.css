@@ -213,6 +213,10 @@ footer{
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     box-shadow: #000 0px 1px 5px;
+    text-align: center;
+    padding: 5px;
+    color: #a4a4a4;
+    font-size: 1.2em
 }
 
 #home article {

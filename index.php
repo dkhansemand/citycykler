@@ -15,6 +15,7 @@
 
     Router::Init($_SERVER['REQUEST_URI']);
 
+    $siteInfo = SiteSettings::GetSiteInfo();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>City Cykler | <?=Router::ViewTitle()?></title>
+    <title><?=$siteInfo->siteTitle?> | <?=Router::ViewTitle()?></title>
     <link rel="stylesheet" href="<?=Router::$BASE?>assets/css/style.css">
 </head>
 <body>
@@ -84,6 +85,7 @@
             </section>
         </section>
         <footer>
+            <p><?=$siteInfo->siteTitle?>, <?=$siteInfo->street?>, <?=$siteInfo->zipcode?> <?=$siteInfo->city?>, ( +45 ) <?=$siteInfo->phone?>, <?=$siteInfo->email?></p>
         </footer>
     </section>
 </div>
