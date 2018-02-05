@@ -50,7 +50,7 @@
                 <a href="<?=Router::Link('/Forsiden')?>" class="<?=Router::IsActive(['/Forsiden'])?>">Forsiden</a>
                 <a href="<?=Router::Link('/Kategori/Cykler')?>" class="<?=Router::IsActive(['/Kategori/Cykler', '/Produkter/Cykler/', '/Produkt/Cykler/'])?>">Cykler</a>
                 <a href="<?=Router::Link('/Kategori/Udstyr')?>" class="<?=Router::IsActive(['/Kategori/Udstyr', '/Produkter/Udstyr/', '/Produkt/Udstyr/'])?>">Udstyr</a>
-                <a href="#">Kontakt</a>
+                <a href="<?=Router::Link('/Kontakt')?>" class="<?=Router::IsActive(['/Kontakt'])?>">Kontakt</a>
                 <a href="<?=Router::Link('/Nyheder')?>" class="<?=Router::IsActive(['/Nyheder'])?>">Nyheder</a>
             </nav>
         </header>
