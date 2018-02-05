@@ -259,4 +259,23 @@ class Product extends Database
             throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
         }
     }
+
+    public static function GetLatestProducts(int $limit = 2)
+    {
+        try
+        {
+            $queryLatest = (new self)->prepare("SELECT productId, productCategory, productBrand, DATE_FORMAT(productDateAdded, '%d/%m/%Y') AS addDate, brandName, `filename`, productDesc, productModel, productPrice FROM products
+                                                    INNER JOIN brands ON productBrand = brandId
+                                                    INNER JOIN category ON productCategory = categoryId
+                                                    INNER JOIN categorytypes ON categoryType = categoryTypeId
+                                                    INNER JOIN media ON productImage = mediaId
+                                                    ORDER BY productDateAdded DESC LIMIT :L");
+            $queryLatest->bindParam(':L', $limit, PDO::PARAM_INT);
+            $queryLatest->execute();
+            return $queryLatest->fetchAll();
+        }catch(Exception $err)
+        {
+            throw new Exception("Fejl! [Product-class.php]: " . $err->getMessage());
+        }
+    }
 }

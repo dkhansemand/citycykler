@@ -355,3 +355,51 @@ footer{
     height: 50%;
     margin-top: 5px;
 }
+
+#newsProducts
+{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr ;
+    grid-row-gap: 10px;
+    padding: 10px 5px;
+}
+
+#newsProducts article{
+    border: 2px solid #EDEDED;
+    display: grid;
+    grid-template-columns: auto 120px;
+    grid-column-gap: 180px;
+    padding: 5px 10px;
+}
+
+#newsProducts article .product-item p{
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+#newsProducts article .product-item h3{
+    border-bottom: 0;
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+#newsProducts .product-info{
+    display: flex;
+    justify-content: space-between;
+}
+#newsProducts  article .product-item .product-info p{
+    margin-bottom: 0;
+}
+#newsProducts .product-info a {
+    color: #ff9e41;
+    font-size: 1.2em;
+}
+
+#newsProducts .pages{
+    color: #ff9e41;
+    display: flex;
+    font-size: 1.2em;
+    justify-content: flex-end;
+    margin-right: 20px;
+}

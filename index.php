@@ -1,9 +1,7 @@
 <?php
     
     require_once __DIR__ . DIRECTORY_SEPARATOR . 'init.php';
-    //require_once __DIR__ . DIRECTORY_SEPARATOR . 'Guard-class.php';
-  
-
+    
     Router::SetDefaultRoute('/Forsiden');
     Router::SetViewFolder(__DIR__.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
 
@@ -12,6 +10,8 @@
     Router::AddEndpoint('/Produkter/:CATEGORY/:CATEGORYNAME/:PAGE','products.php', ['title' => 'Produkter']);
     Router::AddEndpoint('/Produkt/:CATEGORY/:CATEGORYNAME/:ID', 'productView.php', ['title' => 'Vis produkt']);
     Router::AddEndpoint('/Soegning/:QPAGE', 'search.php', ['title' => 'Advanceret søgning']);
+    Router::AddEndpoint('/Nyheder/:OPT/:NPAGE', 'news.php', ['title' => 'Nyheder']);
+    Router::AddEndpoint('/Kontakt', 'contact.php', ['title' => 'Kontakt']);
 
     Router::Init($_SERVER['REQUEST_URI']);
 
@@ -51,7 +51,7 @@
                 <a href="<?=Router::Link('/Kategori/Cykler')?>" class="<?=Router::IsActive(['/Kategori/Cykler', '/Produkter/Cykler/', '/Produkt/Cykler/'])?>">Cykler</a>
                 <a href="<?=Router::Link('/Kategori/Udstyr')?>" class="<?=Router::IsActive(['/Kategori/Udstyr', '/Produkter/Udstyr/', '/Produkt/Udstyr/'])?>">Udstyr</a>
                 <a href="#">Kontakt</a>
-                <a href="#">Nyheder</a>
+                <a href="<?=Router::Link('/Nyheder')?>" class="<?=Router::IsActive(['/Nyheder'])?>">Nyheder</a>
             </nav>
         </header>
         <section id="mainContent">
