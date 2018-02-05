@@ -18,12 +18,12 @@
     Router::AddEndpoint('/BrandEdit/:ID','brands/editBrand.php', ['guard' => new Guard(), 'title' => 'Ret mærke']);
     Router::AddEndpoint('/BrandDelete/:ID','brands/deleteBrand.php', ['guard' => new Guard(), 'title' => 'Slet mærke']);
     Router::AddEndpoint('/Products','products/productlist.php', ['guard' => new Guard(), 'title' => 'Produkter']);
-    Router::AddEndpoint('/ProductAdd/:CATEGORYTYPE','products/newProduct.php', ['guard' => new Guard(), 'title' => 'Tilføj produkt']);
+    Router::AddEndpoint('/ProductAdd/:CTYPE','products/newProduct.php', ['guard' => new Guard(), 'title' => 'Tilføj produkt']);
     Router::AddEndpoint('/ProductEdit/:ID/:CATEGORYTYPE','products/editProduct.php', ['guard' => new Guard(), 'title' => 'Ret produkt']);
     Router::AddEndpoint('/ProductDelete/:ID','products/deleteProduct.php', ['guard' => new Guard(), 'title' => 'Slet produkt']);
     Router::AddEndpoint('/ProductColorSecret', 'products/colors.php', ['guard' => new Guard(), 'title' => 'Opret farve']);
     Router::AddEndpoint('/Offers', 'offer/offersList.php', ['guard' => new Guard(), 'title' => 'Tilbuds liste']);
-    Router::AddEndpoint('/OfferAdd/:OBRAND', 'offer/newOffer.php', ['guard' => new Guard(), 'title' => 'Nyt tilbud']);
+    Router::AddEndpoint('/OfferAdd/:NOBRAND', 'offer/newOffer.php', ['guard' => new Guard(), 'title' => 'Nyt tilbud']);
     Router::AddEndpoint('/OfferEdit/:OID/:OBRAND', 'offer/editOffer.php', ['guard' => new Guard(), 'title' => 'Ret tilbud']);
     Router::AddEndpoint('/OfferDelete/:OID', 'offer/deleteOffer.php', ['guard' => new Guard(), 'title' => 'Slet tilbud']);
     Router::AddEndpoint('/Settings', 'settings.php', ['guard' => new Guard(), 'title' => 'Side indstillinger']);

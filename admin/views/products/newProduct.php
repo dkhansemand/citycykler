@@ -44,7 +44,7 @@
             <select name="categoryType" autofocus required>
                 <option value="0" <?= isset($POST['categoryType']) ? '' : 'selected'?> disabled>Vælg kategori...</option>
                 <?php
-                    foreach(Category::GetCategoriesByType(Router::GetParam(':CATEGORYTYPE')) as $Category)
+                    foreach(Category::GetCategoriesByType(Router::GetParam(':CTYPE')) as $Category)
                     {
                 ?>
                         <option value="<?=$Category->categoryId?>" <?= (@$POST['categoryType'] == $Category->categoryId) ? 'selected' : ''?> ><?=$Category->categoryName?></option>
@@ -95,7 +95,7 @@
         <div class="mdl-cell mdl-cell--8-col">
             <div id="colorsList"> 
             <?php
-            if(Router::GetParam(':CATEGORYTYPE') === 'Cykler'){
+            if(Router::GetParam(':CTYPE') === 'Cykler'){
                 foreach(Product::GetColors() as $color){
             ?>
                 <span>

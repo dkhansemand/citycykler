@@ -1,5 +1,5 @@
 <pre>
-    <?php var_dump($POST); //var_dump(Router::GetParams()); ?>
+    <?php //var_dump($POST); var_dump(Router::GetParams()); ?>
 </pre>
 <?php
 
@@ -33,7 +33,7 @@
                 foreach(Brands::GetBrands() as $brand)
                 {
             ?>
-                    <option value="<?=$brand->brandId?>" <?= (@$POST['brand'] || Router::GetParam(':OBRAND')  == $brand->brandName) ? 'selected' : ''?> ><?=$brand->brandName?></option>
+                    <option value="<?=$brand->brandId?>" <?= (@$POST['brand'] || Router::GetParam(':NOBRAND')  == $brand->brandName) ? 'selected' : ''?> ><?=$brand->brandName?></option>
             <?php
                 }          
             ?>
@@ -41,7 +41,7 @@
             <?= isset($error['brand']) ? '<p class="error">'.$error['brand'].'</p>' : ''?>
         </div>
         <?php
-            if(!empty(Router::GetParam(':OBRAND'))){
+            if(!empty(Router::GetParam(':NOBRAND'))){
 
             
         ?>
@@ -50,7 +50,7 @@
             <select name="productModel" id="productModel" required>
             <option value="0" <?= isset($POST['productModel']) ? '' : 'selected'?> disabled>Vælg produktmodel...</option>
             <?php
-                foreach(Product::GetProductModels(Router::GetParam(':OBRAND')) as $model)
+                foreach(Product::GetProductModels(Router::GetParam(':NOBRAND')) as $model)
                 {
             ?>
                     <option value="<?=$model->productId?>" <?= (@$POST['productModel'] == $model->productModel) ? 'selected' : ''?> ><?=$model->productModel?></option>
