@@ -15,7 +15,8 @@
                 $msg->error('Forkert bruggernavn/password.', null, true);
             }
         }else{
-            echo 'SESSION udløbet eller noegt...', var_dump($_SESSION);
+            $msg = new FlashMessages();
+                $msg->error('Din session er udløbet.', null, true);
         }
     }
 ?>
