@@ -26,6 +26,7 @@
     Router::AddEndpoint('/OfferAdd/:OBRAND', 'offer/newOffer.php', ['guard' => new Guard(), 'title' => 'Nyt tilbud']);
     Router::AddEndpoint('/OfferEdit/:OID/:OBRAND', 'offer/editOffer.php', ['guard' => new Guard(), 'title' => 'Ret tilbud']);
     Router::AddEndpoint('/OfferDelete/:OID', 'offer/deleteOffer.php', ['guard' => new Guard(), 'title' => 'Slet tilbud']);
+    Router::AddEndpoint('/Settings', 'settings.php', ['guard' => new Guard(), 'title' => 'Side indstillinger']);
 
     Router::Init($_SERVER['REQUEST_URI']);
    
