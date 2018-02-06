@@ -15,7 +15,7 @@ class Guard extends JWT
             "exp" => strtotime("+2 hour"),
             "iat" => time(), // Time stamp
             "nbf" => time(), // Time Stamp          
-            "exp" => strtotime("+2 hour"),
+            "exp" => strtotime("+1 hour"),
             "data" => $userData
         );
         $this->userSession = JWT::encode($payload, _JWTKEY_);
