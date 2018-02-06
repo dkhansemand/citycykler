@@ -140,7 +140,7 @@ h5{
     display: grid;
     grid-template-areas: 
         "content split offersPanel";
-    grid-template-columns: auto 3px 240px;
+    grid-template-columns: auto 2px 240px;
     grid-area: main; 
     padding: 5px;
     
