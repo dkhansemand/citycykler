@@ -210,7 +210,7 @@ class Product extends Database
                             INNER JOIN media ON productImage = mediaId
                             WHERE ";
             if(!empty($query)){
-                $sql .= " productModel LIKE CONCAT('%', :SQ, '%') ";
+                $sql .= " productModel LIKE CONCAT('%', :SQ, '%') OR productDesc LIKE CONCAT('%', :SQ, '%') ";
                 $params[':SQ'] = $query;
             }
             if((sizeof($params) === 0) && !is_null($category) && is_numeric($category)){
