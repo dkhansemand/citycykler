@@ -37,7 +37,7 @@
                     </div>
                     <div>
                         <form action="<?=Router::Link('/Soegning')?>" method="post" id="headerSearch">
-                            <input type="text" name="searchVal" id="searchVal"><br>
+                            <input type="text" name="searchVal" id="searchVal" required><br>
                             <button>Søg</button>
                             <a href="<?=Router::Link('/Soegning')?>">Advanceret søg</a>
                         </form>
@@ -69,12 +69,14 @@
                         foreach($offerList as $offer)
                         {
                     ?>
-                        <div class="product-item">
-                            <h4><?=$offer->brandName . ' ' . $offer->productModel?></h4>
-                            <img src="<?=Router::$BASE?>assets/media/<?=$offer->filename?>" alt="<?=$offer->brandName . ' ' . $offer->productModel?>" height="48" width="69">
-                            <p class="price-before">Før: <span class="line"><?=number_format($offer->productPrice, 0, '.', '.')?></span> kr.</p>
-                            <p class="price-after">Nu kun <?=number_format($offer->offerPrice, 0, '.', '.')?> kr.</p>
-                        </div>
+                        <a href="<?=Router::Link('/Produkt/'.$offer->categoryTypeName.'/'.$offer->categoryName.'/'.$offer->productId)?>">
+                            <div class="product-item">
+                                <h4><?=$offer->brandName . ' ' . $offer->productModel?></h4>
+                                <img src="<?=Router::$BASE?>assets/media/<?=$offer->filename?>" alt="<?=$offer->brandName . ' ' . $offer->productModel?>" height="48" width="69">
+                                <p class="price-before">Før: <span class="line"><?=number_format($offer->productPrice, 0, '.', '.')?></span> kr.</p>
+                                <p class="price-after">Nu kun <?=number_format($offer->offerPrice, 0, '.', '.')?> kr.</p>
+                            </div>
+                        </a>
                     <?php
                         }
                     }else{

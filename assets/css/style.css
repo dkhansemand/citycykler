@@ -186,6 +186,10 @@ h5{
     grid-template-rows: 1fr 1fr 1fr;
     grid-row-gap: 10px;
 }
+#mainContent #offersPanel .offers-list a{
+    text-decoration: none;
+    color: inherit;
+}
 
 #mainContent #offersPanel .offers-list .product-item{
     border: 2px solid #EDEDED;

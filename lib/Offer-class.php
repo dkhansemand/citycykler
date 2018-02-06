@@ -39,9 +39,11 @@ class Offer extends Database
     {
         try
         {
-            return (new self)->query("SELECT productId, productModel, productPrice, brandName, offerPrice, `filename` FROM offers
+            return (new self)->query("SELECT categoryTypeName, categoryName, productId, productModel, productPrice, brandName, offerPrice, `filename` FROM offers
                                         INNER JOIN products ON fkProductId = productId
                                         INNER JOIN brands ON productBrand = brandId
+                                        INNER JOIN category ON categoryId = productCategory
+                                        INNER JOIN categorytypes ON categoryTypeId = categoryType
                                         INNER JOIN media ON productImage = mediaId
                                         ORDER BY RAND() LIMIT 3")->fetchAll();
         }catch(Exception $err)
