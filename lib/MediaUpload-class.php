@@ -38,11 +38,12 @@ class MediaUpload extends Database
                 $fileName = str_replace(' ', '', $fileName) . str_replace('image/', '.', $imageData['mime']);
                 if(sizeof($sizes) > 0){
                     $mediaIds = [];
+                    if(move_uploaded_file($file['tmp_name'], self::$uploadFolder . $fileName)){
                     foreach($sizes as $size)
                     {
                         if(strpos($size, 'x') !== false){
                             $newSize = explode('x', $size);
-                            if(move_uploaded_file($file['tmp_name'], self::$uploadFolder . $fileName)){
+                            
                                 if(MediaResizer::Generate(self::$uploadFolder . $fileName, self::$uploadFolder . $size .'_'. $fileName, $newSize[0], $newSize[1])){
                                     (new self)->query("INSERT INTO media (`filename`, `mime`)VALUES(:FNAME, :FTYPE);", 
                                                             [
@@ -52,9 +53,9 @@ class MediaUpload extends Database
                                     $mediaId = (new self)->query("SELECT mediaId FROM media WHERE `filename` = :FNAME;", [':FNAME' => $size.'_' . $fileName])->fetch()->mediaId;
                                     array_push($mediaIds, $mediaId);
                                 }
-                                unlink(self::$uploadFolder . $fileName);
                             }
                         }
+                        unlink(self::$uploadFolder . $fileName);
                     }
                     return ['err' => false, 'data' => $mediaIds];
                 }else{
