@@ -2,7 +2,7 @@
 /**
  * RESTfull router - based on static methods
  * @author Andreas Hansson <dkhansemand@gmail.com>
- * @version 1.0.0
+ * @version 1.66.6
  */
 
 class Router
