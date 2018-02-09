@@ -51,10 +51,10 @@
                             <img src="../assets/media/<?=$product->filename?>" alt="<?=$product->productName?>">
                         </td>
                         <td class="mdl-data-table__cell--non-numeric">
-                            <a href="<?=Router::Link('/ProductEdit/'.$product->productId . '/'.ucfirst($product->categoryTypeName))?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                            <a href="<?=Router::Link('/Product/Edit/'.ucfirst($product->categoryTypeName) . '/'. $product->productId )?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
                                 <i class="material-icons">edit</i>
                             </a>
-                            <a href="<?=Router::Link('/ProductDelete/'.$product->productId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
+                            <a href="<?=Router::Link('/Product/Delete/'.$product->productId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
                                 <i class="material-icons">delete</i>
                             </a>
                         </td>

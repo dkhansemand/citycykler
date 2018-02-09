@@ -140,7 +140,7 @@ class Router
                elseif($match && (strpos($endpoint, ':') !== false))
                {
                     if(isset($routeArr[$id]) && ( substr(self::$route, 0, strlen(self::$REQ_ROUTES[$idx])) === self::$REQ_ROUTES[$idx] )
-                    && ( count($endPointArr) === count($routeArr) ) )
+                   )
                     {
                         self::$params[self::$route][$endpoint] = $routeArr[$id];
                     }
@@ -171,9 +171,9 @@ class Router
     public static function Redirect(string $url) : void
     {
         self::$BASE = '/'.trim(substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], "index.php")), '/');
-        //var_dump('location:'.self::$BASE.$url);
-        //echo '<pre>',self::DumpViews(),'</pre>';
-        header('Location:'.self::$BASE.$url.'');
+        var_dump('location:'.self::$BASE.$url);
+        echo '<pre>',self::DumpViews(),'</pre>';
+        //header('Location:'.self::$BASE.$url.'');
         exit;
     }
 

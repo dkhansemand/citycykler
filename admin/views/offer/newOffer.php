@@ -19,7 +19,7 @@
     }
 ?>
 <form action="" method="post" enctype="multipart/form-data">
-<input type="hidden" name="url" id="siteUrl" value="<?=Router::Link('/OfferAdd')?>">
+<input type="hidden" name="url" id="siteUrl" value="<?=Router::Link('/Offer/Add')?>">
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
             <?= isset($success) ? '<h5 class="success">'.$success.'</h5>' : ''?>

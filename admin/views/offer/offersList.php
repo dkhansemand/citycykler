@@ -1,6 +1,6 @@
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--12-col">
-        <a href="<?=Router::Link('/OfferAdd');?>" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+        <a href="<?=Router::Link('/Offer/Add/Select');?>" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
             <i class="material-icons">add</i>
         </a>
     </div>
@@ -27,10 +27,10 @@
                     <td class="mdl-data-table__cell--non-numeric"><?=$offer->productModel?></td>
                     <td><?=$offer->offerPrice?></td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <a href="<?=Router::Link('/OfferEdit/'. $offer->offerId . '/' . ucfirst($offer->brandName))?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                        <a href="<?=Router::Link('/Offer/Edit/'. ucfirst($offer->brandName) . '/' . $offer->offerId )?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
                             <i class="material-icons">edit</i>
                         </a>
-                        <a href="<?=Router::Link('/OfferDelete/'. $offer->offerId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
+                        <a href="<?=Router::Link('/Offer/Delete/'. $offer->offerId)?>" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn-red">
                             <i class="material-icons">delete</i>
                         </a>
                     </td>
