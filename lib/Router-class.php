@@ -7,7 +7,7 @@
 
 class Router
 {
-    private static  $currentRoute = '/',
+    private static  $currentRoute = null,
                     $defaultRoute,
                     $endRoutes    = [],
                     $params       = [],
@@ -15,7 +15,8 @@ class Router
                     $viewFolder   = 'views',
                     $view,
                     $views        = [],
-                    $title        = [];
+                    $title        = [],
+                    $REQ_ROUTES    = null;
 
     public static   $BASE = '';
 
@@ -31,12 +32,12 @@ class Router
 
     public static function GetParams() : array
     {
-        return self::$params;
+        return self::$params[self::$route];
     }
 
     public static function GetParam(string $param) : string
     {
-        return rawurldecode(self::$params[$param]) ?? null;
+        return rawurldecode(self::$params[self::$route][$param]) ?? null;
     }
 
     public static function GetView() : string
@@ -51,9 +52,12 @@ class Router
 
     public static function DumpViews() : void
     {
-        var_dump(self::$views);
-        var_dump(self::$endRoutes);
-        var_dump(self::$route);
+        var_dump(['self::$view' => self::$view]);
+        var_dump(['self::$endRoutes' => self::$endRoutes]);
+        var_dump(['self::$route' => self::$route]);
+        var_dump(['self::$currentRoute' => self::$currentRoute]);
+        var_dump(['self::$REQ_ROUTES' => self::$REQ_ROUTES]);
+
     }
 
     public static function AddEndpoint(string $endpoint, string $view, array $options = []) : void
@@ -108,35 +112,39 @@ class Router
         self::$route = '/'.str_replace(self::$BASE, '', $URI);
         $match = false;
         $routeArr = explode('/', trim(self::$route, '/'));
+        //echo '<pre>', var_dump(self::$endRoutes),'</pre>';
         foreach(self::$endRoutes as $idx => $endRoute)
         {
            $endPointArr = explode('/', trim($endRoute[0],'/'));
+           
+           self::$REQ_ROUTES[]  = (strpos($endRoute[0], ':') !== false) ? trim(substr($endRoute[0], 0, strpos($endRoute[0], ":"))) : $endRoute[0];
+           // echo '<pre>',var_dump($endRoute),'</pre>';
            foreach($endPointArr as $id => $endpoint)
            {
                if(isset($routeArr[$id]) && ($endpoint ===  $routeArr[$id]))
                {
-                    self::$currentRoute .= $endpoint;
-                    self::$view = $endRoute[1];
-                    $match = true;
-                    if(count($endPointArr) === count($routeArr))
-                    {
-                        
+                  
+                   if(!$match){
+
+                    if( ( substr(self::$route, 0, strlen(self::$REQ_ROUTES[$idx])) === self::$REQ_ROUTES[$idx] )
+                        && ( count($endPointArr) === count($routeArr) ) ){
+                        $match = true;
+                        self::$view = $endRoute[1];
                         if(array_key_exists('guard', $endRoute))
                         {
                             $endRoute['guard']->Protect();
                         }
                     }
+                  }
                }
                elseif($match && (strpos($endpoint, ':') !== false))
                {
-                    if(!empty($routeArr[$id]))
+                    if(isset($routeArr[$id]) && ( substr(self::$route, 0, strlen(self::$REQ_ROUTES[$idx])) === self::$REQ_ROUTES[$idx] )
+                    && ( count($endPointArr) === count($routeArr) ) )
                     {
-                        self::$params[$endpoint] = $routeArr[$id];
+                        self::$params[self::$route][$endpoint] = $routeArr[$id];
                     }
-                    else
-                    {
-                        self::$params[$endpoint] = '';
-                    }
+                    
                }
            }
         }
@@ -164,6 +172,7 @@ class Router
     {
         self::$BASE = '/'.trim(substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], "index.php")), '/');
         //var_dump('location:'.self::$BASE.$url);
+        //echo '<pre>',self::DumpViews(),'</pre>';
         header('Location:'.self::$BASE.$url.'');
         exit;
     }
