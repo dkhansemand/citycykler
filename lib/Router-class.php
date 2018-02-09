@@ -171,9 +171,9 @@ class Router
     public static function Redirect(string $url) : void
     {
         self::$BASE = '/'.trim(substr($_SERVER['PHP_SELF'], 0, strpos($_SERVER['PHP_SELF'], "index.php")), '/');
-        var_dump('location:'.self::$BASE.$url);
-        echo '<pre>',self::DumpViews(),'</pre>';
-        //header('Location:'.self::$BASE.$url.'');
+        //var_dump('location:'.self::$BASE.$url);
+        //echo '<pre>',self::DumpViews(),'</pre>';
+        header('Location:'.self::$BASE.$url.'');
         exit;
     }
 
